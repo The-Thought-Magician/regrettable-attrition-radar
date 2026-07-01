@@ -34,32 +34,34 @@ interface TopAtRisk {
 interface ManagerOutlier {
   manager_id?: string
   manager_name?: string
-  regrettable_rate?: number
+  regrettable_rate?: number | string
   avg_flight_risk?: number
   team_size?: number
-  replacement_cost_exposure?: number
+  replacement_cost_exposure?: number | string
 }
 interface DashboardSummary {
-  regrettableRate?: number
+  regrettableRate?: number | string
   riskByBand?: RiskByBand[]
-  exposure?: number
-  budgetUtil?: number
+  exposure?: number | string
+  budgetUtil?: number | string
   topDrivers?: TopDriver[]
   topAtRisk?: TopAtRisk[]
   managerOutliers?: ManagerOutlier[]
 }
 
-function fmtMoney(n?: number): string {
-  if (n === undefined || n === null || Number.isNaN(n)) return '$0'
-  if (Math.abs(n) >= 1_000_000) return `$${(n / 1_000_000).toFixed(2)}M`
-  if (Math.abs(n) >= 1_000) return `$${(n / 1_000).toFixed(1)}K`
-  return `$${Math.round(n).toLocaleString()}`
+function fmtMoney(n?: number | string | null): string {
+  const num = typeof n === 'object' ? NaN : Number(n)
+  if (n === undefined || n === null || Number.isNaN(num)) return '$0'
+  if (Math.abs(num) >= 1_000_000) return `$${(num / 1_000_000).toFixed(2)}M`
+  if (Math.abs(num) >= 1_000) return `$${(num / 1_000).toFixed(1)}K`
+  return `$${Math.round(num).toLocaleString()}`
 }
 
-function fmtPct(n?: number): string {
-  if (n === undefined || n === null || Number.isNaN(n)) return '0%'
+function fmtPct(n?: number | string | null): string {
+  const num = typeof n === 'object' ? NaN : Number(n)
+  if (n === undefined || n === null || Number.isNaN(num)) return '0%'
   // accept either fraction (0.12) or percent (12)
-  const v = Math.abs(n) <= 1 ? n * 100 : n
+  const v = Math.abs(num) <= 1 ? num * 100 : num
   return `${v.toFixed(1)}%`
 }
 

@@ -3,7 +3,7 @@ import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
 import { eq, and, desc } from 'drizzle-orm'
 import { db } from '../db/index.js'
-import { risk_scores, scoring_models, scoring_factors, employees } from '../db/schema.js'
+import { risk_scores, scoring_models, scoring_factors, employees, departments, roles } from '../db/schema.js'
 import { authMiddleware, getUserId } from '../lib/auth.js'
 
 const router = new Hono()
@@ -136,14 +136,24 @@ router.get('/', async (c) => {
   }
   const emps = await db.select().from(employees)
   const empById = new Map(emps.map((e) => [e.id, e]))
+  const depts = await db.select().from(departments)
+  const deptById = new Map(depts.map((d) => [d.id, d]))
+  const roleRows = await db.select().from(roles)
+  const roleById = new Map(roleRows.map((r) => [r.id, r]))
 
   const result = [...latest.values()]
     .map((r) => {
       const emp = empById.get(r.employee_id)
+      const dept = emp?.department_id ? deptById.get(emp.department_id) : undefined
+      const role = emp?.role_id ? roleById.get(emp.role_id) : undefined
       return {
         ...r,
         employee_name: emp?.full_name ?? null,
+        full_name: emp?.full_name ?? null,
         department_id: emp?.department_id ?? null,
+        department_name: dept?.name ?? null,
+        role_id: emp?.role_id ?? null,
+        role_title: role?.title ?? null,
         manager_id: emp?.manager_id ?? null,
         level: emp?.level ?? null,
       }

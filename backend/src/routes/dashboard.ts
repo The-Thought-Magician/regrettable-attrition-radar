@@ -94,11 +94,12 @@ router.get('/summary', async (c) => {
     .from(benchmarks)
     .where(and(eq(benchmarks.user_id, userId), eq(benchmarks.key, 'retention_budget')))
   const retentionBudget = bench[0]?.value ?? 0
-  const budgetUtil = {
+  const budgetUtilDetail = {
     budget: retentionBudget,
     spent: totalSpend,
     utilization: retentionBudget > 0 ? totalSpend / retentionBudget : 0,
   }
+  const budgetUtil = budgetUtilDetail.utilization
 
   // --- Top exit drivers (frequency + regrettable-weighted) ---
   const driverRecords = await db
@@ -172,6 +173,7 @@ router.get('/summary', async (c) => {
     riskByBand,
     exposure,
     budgetUtil,
+    budgetUtilDetail,
     topDrivers,
     topAtRisk,
     managerOutliers,
