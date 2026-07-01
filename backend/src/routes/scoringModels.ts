@@ -122,17 +122,24 @@ const modelSchema = z.object({
   band_thresholds: z.record(z.string(), z.number()).optional(),
 })
 
-// Public: list scoring models for the user (active first, then newest)
-router.get('/', async (c) => {
-  const all = await db.select().from(scoring_models).orderBy(desc(scoring_models.is_active), desc(scoring_models.created_at))
+// Auth: list scoring models for the current user (active first, then newest)
+router.get('/', authMiddleware, async (c) => {
+  const userId = getUserId(c)
+  const all = await db
+    .select()
+    .from(scoring_models)
+    .where(eq(scoring_models.user_id, userId))
+    .orderBy(desc(scoring_models.is_active), desc(scoring_models.created_at))
   return c.json(all)
 })
 
-// Public: model detail with its factors
-router.get('/:id', async (c) => {
+// Auth: model detail with its factors, scoped to the current user
+router.get('/:id', authMiddleware, async (c) => {
+  const userId = getUserId(c)
   const id = c.req.param('id')
   const [model] = await db.select().from(scoring_models).where(eq(scoring_models.id, id))
   if (!model) return c.json({ error: 'Not found' }, 404)
+  if (model.user_id !== userId) return c.json({ error: 'Forbidden' }, 403)
   const factors = await db
     .select()
     .from(scoring_factors)
