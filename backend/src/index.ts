@@ -43,6 +43,9 @@ import activityRoutes from './routes/activity.js'
 import settingsRoutes from './routes/settings.js'
 import billingRoutes from './routes/billing.js'
 
+process.on('unhandledRejection', (err) => console.error('Unhandled rejection', err))
+process.on('uncaughtException', (err) => console.error('Uncaught exception', err))
+
 const app = new Hono()
 
 const allowedOrigins = [
