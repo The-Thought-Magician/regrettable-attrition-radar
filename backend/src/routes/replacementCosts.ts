@@ -240,6 +240,8 @@ router.get('/exposure', async (c) => {
   const emps = empIds.length
     ? await db.select().from(employees).where(inArray(employees.id, empIds))
     : []
+  // Only active employees count toward exposure, matching dashboard /summary.
+  const activeEmpIds = new Set(emps.filter((e) => e.status === 'active').map((e) => e.id))
   const empById = new Map(emps.map((e) => [e.id, e]))
 
   const deptRows = await db
@@ -257,6 +259,19 @@ router.get('/exposure', async (c) => {
     if (!bandByEmployee.has(r.employee_id)) bandByEmployee.set(r.employee_id, r.band)
   }
 
+  // Dedupe to the latest cost row per employee, and restrict to active
+  // at-risk (high/critical) employees, matching the dashboard /summary
+  // "exposure" figure so both surfaces agree on the same number.
+  const latestCostByEmployee = new Map<string, typeof costRows[number]>()
+  for (const cr of costRows) {
+    if (!latestCostByEmployee.has(cr.employee_id)) latestCostByEmployee.set(cr.employee_id, cr)
+  }
+  const filteredCostRows = [...latestCostByEmployee.values()].filter((cr) => {
+    const band = bandByEmployee.get(cr.employee_id)
+    const atRisk = band === 'high' || band === 'critical'
+    return activeEmpIds.has(cr.employee_id) && atRisk
+  })
+
   let total = 0
   const deptAgg = new Map<string, { departmentId: string | null; name: string; total: number; count: number }>()
   const bandAgg = new Map<string, { band: string; total: number; count: number }>()
@@ -268,7 +283,7 @@ router.get('/exposure', async (c) => {
     total_cost: number
   }> = []
 
-  for (const cr of costRows) {
+  for (const cr of filteredCostRows) {
     total += cr.total_cost
     const emp = empById.get(cr.employee_id)
     const deptId = emp?.department_id ?? null
