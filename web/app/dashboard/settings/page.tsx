@@ -253,20 +253,20 @@ export default function SettingsPage() {
     (plan?.price_cents ?? 0) > 0 && (sub?.status === 'active' || sub?.status === 'trialing')
 
   const inputCls =
-    'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none'
-  const labelCls = 'mb-1 block text-xs font-medium text-slate-400'
+    'w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none'
+  const labelCls = 'mb-1 block text-xs font-medium text-stone-400'
 
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-white">Settings</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Organization profile, retention thresholds, and billing for your attrition radar.
           </p>
         </div>
         {settingsMeta.updated_at && (
-          <span className="text-xs text-slate-500">Last updated {fmtDate(settingsMeta.updated_at)}</span>
+          <span className="text-xs text-stone-500">Last updated {fmtDate(settingsMeta.updated_at)}</span>
         )}
       </div>
 
@@ -284,7 +284,7 @@ export default function SettingsPage() {
         <CardHeader className="flex items-center justify-between">
           <div>
             <h2 className="text-base font-semibold text-white">Organization Profile</h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+            <p className="mt-0.5 text-xs text-stone-500">
               Used to benchmark your regrettable-attrition rate against industry peers.
             </p>
           </div>
@@ -355,7 +355,7 @@ export default function SettingsPage() {
       <Card>
         <CardHeader>
           <h2 className="text-base font-semibold text-white">Retention Thresholds</h2>
-          <p className="mt-0.5 text-xs text-slate-500">
+          <p className="mt-0.5 text-xs text-stone-500">
             Drive alerting and goal tracking across the radar.
           </p>
         </CardHeader>
@@ -373,7 +373,7 @@ export default function SettingsPage() {
                 placeholder="75"
                 className={inputCls}
               />
-              <p className="mt-1 text-xs text-slate-600">
+              <p className="mt-1 text-xs text-stone-600">
                 Employees scoring at or above this are flagged for alerts.
               </p>
             </div>
@@ -389,7 +389,7 @@ export default function SettingsPage() {
                 placeholder="8"
                 className={inputCls}
               />
-              <p className="mt-1 text-xs text-slate-600">
+              <p className="mt-1 text-xs text-stone-600">
                 Annualized regrettable-attrition goal for the org.
               </p>
             </div>
@@ -404,7 +404,7 @@ export default function SettingsPage() {
                 placeholder="500000"
                 className={inputCls}
               />
-              <p className="mt-1 text-xs text-slate-600">
+              <p className="mt-1 text-xs text-stone-600">
                 Annual budget the ROI optimizer is allowed to allocate.
               </p>
             </div>
@@ -415,9 +415,9 @@ export default function SettingsPage() {
               type="checkbox"
               checked={form.notify_on_critical}
               onChange={(e) => setForm({ ...form, notify_on_critical: e.target.checked })}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-950 text-amber-500 focus:ring-amber-500/60"
+              className="h-4 w-4 rounded border-stone-600 bg-stone-950 text-indigo-500 focus:ring-indigo-500/60"
             />
-            <span className="text-sm text-slate-200">
+            <span className="text-sm text-stone-200">
               Notify me when a critical-band employee enters the watchlist
             </span>
           </label>
@@ -438,7 +438,7 @@ export default function SettingsPage() {
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-base font-semibold text-white">Plan &amp; Billing</h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+            <p className="mt-0.5 text-xs text-stone-500">
               Manage your subscription. Every feature on RegrettableAttritionRadar is free.
             </p>
           </div>
@@ -460,13 +460,13 @@ export default function SettingsPage() {
           </div>
 
           {billingError && (
-            <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
+            <div className="rounded-lg border border-indigo-500/30 bg-indigo-500/10 px-4 py-3 text-sm text-indigo-300">
               {billingError}
             </div>
           )}
 
           {!stripeEnabled && (
-            <div className="rounded-lg border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm text-slate-400">
+            <div className="rounded-lg border border-stone-700 bg-stone-950/60 px-4 py-3 text-sm text-stone-400">
               Stripe is not configured for this deployment, so checkout and the billing portal are
               disabled. All capabilities remain fully available on the free plan.
             </div>
@@ -490,16 +490,16 @@ export default function SettingsPage() {
           </div>
 
           {(sub?.stripe_customer_id || sub?.stripe_subscription_id) && (
-            <div className="rounded-lg border border-slate-800 bg-slate-950/40 px-4 py-3 text-xs text-slate-500">
+            <div className="rounded-lg border border-stone-800 bg-stone-950/40 px-4 py-3 text-xs text-stone-500">
               <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
                 {sub?.stripe_customer_id && (
                   <span>
-                    Customer: <span className="text-slate-400">{sub.stripe_customer_id}</span>
+                    Customer: <span className="text-stone-400">{sub.stripe_customer_id}</span>
                   </span>
                 )}
                 {sub?.stripe_subscription_id && (
                   <span>
-                    Subscription: <span className="text-slate-400">{sub.stripe_subscription_id}</span>
+                    Subscription: <span className="text-stone-400">{sub.stripe_subscription_id}</span>
                   </span>
                 )}
               </div>

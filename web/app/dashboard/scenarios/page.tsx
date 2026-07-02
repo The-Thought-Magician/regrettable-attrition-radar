@@ -159,7 +159,7 @@ export default function ScenariosPage() {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-white">Scenarios</h1>
-          <p className="mt-1 text-sm text-slate-400">Saved retention plans. Select two or more to compare side by side.</p>
+          <p className="mt-1 text-sm text-stone-400">Saved retention plans. Select two or more to compare side by side.</p>
         </div>
       </div>
 
@@ -191,7 +191,7 @@ export default function ScenariosPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search..."
-                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
               />
               <Button onClick={runCompare} disabled={compareIds.length < 2 || compareLoading}>
                 {compareLoading ? 'Comparing...' : `Compare (${compareIds.length})`}
@@ -214,19 +214,19 @@ export default function ScenariosPage() {
               </THead>
               <TBody>
                 {filtered.map((s) => (
-                  <TR key={s.id} className={detailId === s.id ? 'bg-amber-500/5' : ''}>
+                  <TR key={s.id} className={detailId === s.id ? 'bg-indigo-500/5' : ''}>
                     <TD>
                       <input
                         type="checkbox"
                         checked={compareIds.includes(s.id)}
                         onChange={() => toggleCompare(s.id)}
-                        className="h-4 w-4 accent-amber-500"
+                        className="h-4 w-4 accent-indigo-500"
                         aria-label={`Select ${s.name} for comparison`}
                       />
                     </TD>
                     <TD>
-                      <button onClick={() => loadDetail(s.id)} className="font-medium text-amber-300 hover:underline">{s.name}</button>
-                      {s.notes && <div className="mt-0.5 max-w-xs truncate text-xs text-slate-500">{s.notes}</div>}
+                      <button onClick={() => loadDetail(s.id)} className="font-medium text-indigo-300 hover:underline">{s.name}</button>
+                      {s.notes && <div className="mt-0.5 max-w-xs truncate text-xs text-stone-500">{s.notes}</div>}
                     </TD>
                     <TD className="text-right tabular-nums">{money(s.budget)}</TD>
                     <TD className="text-right tabular-nums">{money(s.total_spend)}</TD>
@@ -262,7 +262,7 @@ export default function ScenariosPage() {
             ) : compareData && compareData.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[480px] text-left text-sm">
-                  <thead className="text-xs uppercase tracking-wide text-slate-400">
+                  <thead className="text-xs uppercase tracking-wide text-stone-400">
                     <tr>
                       <th className="px-4 py-3 font-medium">Metric</th>
                       {compareData.map((s) => (
@@ -270,7 +270,7 @@ export default function ScenariosPage() {
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800">
+                  <tbody className="divide-y divide-stone-800">
                     {compareMetrics.map((m) => {
                       const vals = compareData.map((s) => Number(s[m.key] ?? NaN))
                       const valid = vals.filter((v) => !Number.isNaN(v))
@@ -278,13 +278,13 @@ export default function ScenariosPage() {
                         ? (m.lowerBetter ? Math.min(...valid) : Math.max(...valid))
                         : undefined
                       return (
-                        <tr key={String(m.key)} className="hover:bg-slate-900/50">
-                          <td className="px-4 py-3 text-slate-400">{m.label}</td>
+                        <tr key={String(m.key)} className="hover:bg-stone-900/50">
+                          <td className="px-4 py-3 text-stone-400">{m.label}</td>
                           {compareData.map((s, i) => {
                             const v = vals[i]
                             const isBest = best !== undefined && !Number.isNaN(v) && v === best && valid.length > 1
                             return (
-                              <td key={s.id} className={`px-4 py-3 tabular-nums ${isBest ? 'font-semibold text-emerald-300' : 'text-slate-200'}`}>
+                              <td key={s.id} className={`px-4 py-3 tabular-nums ${isBest ? 'font-semibold text-emerald-300' : 'text-stone-200'}`}>
                                 {m.fmt(s[m.key] as number | undefined)}
                                 {isBest && <span className="ml-1 text-[10px] uppercase text-emerald-400">best</span>}
                               </td>
@@ -319,7 +319,7 @@ export default function ScenariosPage() {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-base font-bold text-white">{detail.scenario.name}</h3>
-                  {detail.scenario.notes && <p className="mt-1 text-sm text-slate-400">{detail.scenario.notes}</p>}
+                  {detail.scenario.notes && <p className="mt-1 text-sm text-stone-400">{detail.scenario.notes}</p>}
                 </div>
                 <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
                   <Stat label="Budget" value={money(detail.scenario.budget)} />
@@ -329,7 +329,7 @@ export default function ScenariosPage() {
                   <Stat label="Reg. rate" value={rate(detail.scenario.projected_regrettable_rate)} />
                 </div>
                 <div>
-                  <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Allocations ({detail.allocations?.length ?? 0})</h4>
+                  <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-400">Allocations ({detail.allocations?.length ?? 0})</h4>
                   {detail.allocations && detail.allocations.length > 0 ? (
                     <Table>
                       <THead>

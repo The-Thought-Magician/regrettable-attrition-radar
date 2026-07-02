@@ -222,7 +222,7 @@ export default function DriversPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-white">Exit Drivers</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Why people leave. Maintain the driver register, tag exits, and rank drivers by frequency and
             regrettable-weighted impact.
           </p>
@@ -253,15 +253,15 @@ export default function DriversPage() {
         />
       </div>
 
-      <div className="flex gap-1 border-b border-slate-800">
+      <div className="flex gap-1 border-b border-stone-800">
         {tabs.map((t) => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
             className={`-mb-px border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
               tab === t.key
-                ? 'border-amber-500 text-amber-400'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+                ? 'border-indigo-500 text-indigo-400'
+                : 'border-transparent text-stone-400 hover:text-stone-200'
             }`}
           >
             {t.label}
@@ -273,8 +273,8 @@ export default function DriversPage() {
         <div className="grid gap-6 lg:grid-cols-3">
           <Card className="lg:col-span-2">
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Driver ranking</h2>
-              <p className="text-xs text-slate-500">Bars show regrettable-weighted impact; count is raw frequency.</p>
+              <h2 className="text-sm font-semibold text-stone-200">Driver ranking</h2>
+              <p className="text-xs text-stone-500">Bars show regrettable-weighted impact; count is raw frequency.</p>
             </CardHeader>
             <CardBody>
               {ranking.length === 0 ? (
@@ -292,17 +292,17 @@ export default function DriversPage() {
                   {ranking.map((r, i) => (
                     <div key={r.driver_id}>
                       <div className="mb-1 flex items-center justify-between text-sm">
-                        <span className="flex items-center gap-2 text-slate-200">
-                          <span className="w-5 text-right tabular-nums text-slate-500">{i + 1}.</span>
+                        <span className="flex items-center gap-2 text-stone-200">
+                          <span className="w-5 text-right tabular-nums text-stone-500">{i + 1}.</span>
                           {r.label}
                         </span>
-                        <span className="tabular-nums text-slate-400">
+                        <span className="tabular-nums text-stone-400">
                           {r.freq} exits · {r.weighted.toFixed(1)} wt
                         </span>
                       </div>
-                      <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+                      <div className="h-2 overflow-hidden rounded-full bg-stone-800">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-amber-600 to-amber-400"
+                          className="h-full rounded-full bg-gradient-to-r from-indigo-600 to-indigo-400"
                           style={{ width: `${Math.max(4, (r.weighted / maxWeighted) * 100)}%` }}
                         />
                       </div>
@@ -315,8 +315,8 @@ export default function DriversPage() {
 
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Trend</h2>
-              <p className="text-xs text-slate-500">Driver records per period.</p>
+              <h2 className="text-sm font-semibold text-stone-200">Trend</h2>
+              <p className="text-xs text-stone-500">Driver records per period.</p>
             </CardHeader>
             <CardBody>
               {trend.length === 0 ? (
@@ -327,12 +327,12 @@ export default function DriversPage() {
                     <div key={t.period} className="flex flex-1 flex-col items-center gap-1">
                       <div className="flex w-full flex-1 items-end">
                         <div
-                          className="w-full rounded-t bg-amber-500/70"
+                          className="w-full rounded-t bg-indigo-500/70"
                           style={{ height: `${Math.max(4, (t.count / maxTrend) * 100)}%` }}
                           title={`${t.period}: ${t.count}`}
                         />
                       </div>
-                      <span className="text-[10px] text-slate-500">{t.period}</span>
+                      <span className="text-[10px] text-stone-500">{t.period}</span>
                     </div>
                   ))}
                 </div>
@@ -345,7 +345,7 @@ export default function DriversPage() {
       {tab === 'register' && (
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-200">Driver register</h2>
+            <h2 className="text-sm font-semibold text-stone-200">Driver register</h2>
             <Button variant="secondary" onClick={openCreateDriver}>
               Add driver
             </Button>
@@ -379,7 +379,7 @@ export default function DriversPage() {
                         <TD>
                           <Badge tone="neutral">{d.category}</Badge>
                         </TD>
-                        <TD className="max-w-md text-slate-400">{d.description || '—'}</TD>
+                        <TD className="max-w-md text-stone-400">{d.description || '—'}</TD>
                         <TD className="text-right tabular-nums">{cnt}</TD>
                         <TD className="text-right">
                           <div className="flex justify-end gap-2">
@@ -404,7 +404,7 @@ export default function DriversPage() {
       {tab === 'records' && (
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-200">Driver records</h2>
+            <h2 className="text-sm font-semibold text-stone-200">Driver records</h2>
             <Button variant="secondary" onClick={openCreateRecord} disabled={drivers.length === 0 || exits.length === 0}>
               Tag an exit
             </Button>
@@ -439,12 +439,12 @@ export default function DriversPage() {
                 <TBody>
                   {records.map((r) => (
                     <TR key={r.id}>
-                      <TD className="text-slate-200">{r.employee_name ?? exitLabel(r.exit_id)}</TD>
+                      <TD className="text-stone-200">{r.employee_name ?? exitLabel(r.exit_id)}</TD>
                       <TD className="font-medium text-white">{r.driver_name ?? driverName(r.driver_id)}</TD>
                       <TD className="text-right">
                         <Badge tone={sevTone(r.severity)}>{r.severity}</Badge>
                       </TD>
-                      <TD className="max-w-md text-slate-400">{r.notes || '—'}</TD>
+                      <TD className="max-w-md text-stone-400">{r.notes || '—'}</TD>
                     </TR>
                   ))}
                 </TBody>
@@ -471,20 +471,20 @@ export default function DriversPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Name</label>
             <input
               value={driverForm.name}
               onChange={(e) => setDriverForm({ ...driverForm, name: e.target.value })}
               placeholder="e.g. Below-market compensation"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Category</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Category</label>
             <select
               value={driverForm.category}
               onChange={(e) => setDriverForm({ ...driverForm, category: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               {CATEGORIES.map((c) => (
                 <option key={c} value={c}>
@@ -494,13 +494,13 @@ export default function DriversPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Description</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Description</label>
             <textarea
               value={driverForm.description}
               onChange={(e) => setDriverForm({ ...driverForm, description: e.target.value })}
               rows={3}
               placeholder="Optional context on this driver"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
         </div>
@@ -523,11 +523,11 @@ export default function DriversPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Exit</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Exit</label>
             <select
               value={recordForm.exit_id}
               onChange={(e) => setRecordForm({ ...recordForm, exit_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               {exits.map((x) => (
                 <option key={x.id} value={x.id}>
@@ -538,11 +538,11 @@ export default function DriversPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Driver</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Driver</label>
             <select
               value={recordForm.driver_id}
               onChange={(e) => setRecordForm({ ...recordForm, driver_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               {drivers.map((d) => (
                 <option key={d.id} value={d.id}>
@@ -552,7 +552,7 @@ export default function DriversPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">
               Severity: {recordForm.severity}
             </label>
             <input
@@ -562,21 +562,21 @@ export default function DriversPage() {
               step={1}
               value={recordForm.severity}
               onChange={(e) => setRecordForm({ ...recordForm, severity: Number(e.target.value) })}
-              className="w-full accent-amber-500"
+              className="w-full accent-indigo-500"
             />
-            <div className="flex justify-between text-[10px] text-slate-500">
+            <div className="flex justify-between text-[10px] text-stone-500">
               <span>1 minor</span>
               <span>5 decisive</span>
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Notes</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Notes</label>
             <textarea
               value={recordForm.notes}
               onChange={(e) => setRecordForm({ ...recordForm, notes: e.target.value })}
               rows={3}
               placeholder="Optional notes from the exit interview"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
         </div>

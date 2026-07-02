@@ -10,6 +10,7 @@ import { Modal } from '@/components/ui/Modal'
 import { Table, THead, TBody, TR, TH, TD } from '@/components/ui/Table'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { PageSpinner } from '@/components/ui/Spinner'
+import { RightRail } from '@/components/RightRail'
 
 interface Department {
   id: string
@@ -41,8 +42,8 @@ interface Employee {
 const STATUSES = ['active', 'on_leave', 'exited']
 
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-amber-500 focus:outline-none'
-const labelCls = 'mb-1 block text-xs font-medium text-slate-400'
+  'w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-white placeholder:text-stone-500 focus:border-indigo-500 focus:outline-none'
+const labelCls = 'mb-1 block text-xs font-medium text-stone-400'
 
 export default function EmployeesPage() {
   const [employees, setEmployees] = useState<Employee[]>([])
@@ -191,11 +192,12 @@ export default function EmployeesPage() {
   if (loading) return <PageSpinner label="Loading roster..." />
 
   return (
-    <div className="space-y-6">
+    <div className="flex items-start gap-6">
+    <div className="min-w-0 flex-1 space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-white">Employees</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             {filtered.length} of {employees.length} employees
           </p>
         </div>
@@ -254,7 +256,7 @@ export default function EmployeesPage() {
             <div className="mt-3">
               <button
                 onClick={() => { setSearch(''); setDeptFilter(''); setLocFilter(''); setStatusFilter('') }}
-                className="text-xs text-amber-400 hover:text-amber-300"
+                className="text-xs text-indigo-400 hover:text-indigo-300"
               >
                 Clear filters
               </button>
@@ -295,15 +297,15 @@ export default function EmployeesPage() {
             {filtered.map((e) => (
               <TR key={e.id}>
                 <TD>
-                  <Link href={`/dashboard/employees/${e.id}`} className="font-medium text-amber-400 hover:text-amber-300">
+                  <Link href={`/dashboard/employees/${e.id}`} className="font-medium text-indigo-400 hover:text-indigo-300">
                     {e.full_name}
                   </Link>
-                  {e.email && <div className="text-xs text-slate-500">{e.email}</div>}
+                  {e.email && <div className="text-xs text-stone-500">{e.email}</div>}
                 </TD>
-                <TD className="text-slate-400">{deptName(e.department_id)}</TD>
-                <TD className="text-slate-400">{roleName(e.role_id)}</TD>
-                <TD className="text-slate-400">{locName(e.location_id)}</TD>
-                <TD className="text-slate-400">{e.level ?? '—'}</TD>
+                <TD className="text-stone-400">{deptName(e.department_id)}</TD>
+                <TD className="text-stone-400">{roleName(e.role_id)}</TD>
+                <TD className="text-stone-400">{locName(e.location_id)}</TD>
+                <TD className="text-stone-400">{e.level ?? '—'}</TD>
                 <TD>
                   <Badge tone={statusTone(e.status)}>{e.status.replace('_', ' ')}</Badge>
                 </TD>
@@ -456,6 +458,8 @@ export default function EmployeesPage() {
           </div>
         </form>
       </Modal>
+    </div>
+    <RightRail />
     </div>
   )
 }

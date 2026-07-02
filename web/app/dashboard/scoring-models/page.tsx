@@ -285,7 +285,7 @@ export default function ScoringModelsPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold text-white">Scoring Models</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Configure flight-risk factor weights and risk band thresholds.
           </p>
         </div>
@@ -328,15 +328,15 @@ export default function ScoringModelsPage() {
                   onClick={() => setSelectedId(m.id)}
                   className={`w-full rounded-xl border px-4 py-3 text-left transition-colors ${
                     selected
-                      ? 'border-amber-500 bg-amber-500/5'
-                      : 'border-slate-800 bg-slate-900 hover:border-slate-700'
+                      ? 'border-indigo-500 bg-indigo-500/5'
+                      : 'border-stone-800 bg-stone-900 hover:border-stone-700'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-medium text-slate-100">{m.name}</span>
+                    <span className="font-medium text-stone-100">{m.name}</span>
                     {m.is_active && <Badge tone="green">Active</Badge>}
                   </div>
-                  <div className="mt-1 flex items-center gap-2 text-xs text-slate-500">
+                  <div className="mt-1 flex items-center gap-2 text-xs text-stone-500">
                     <span>v{m.version}</span>
                     {m.description && <span className="truncate">· {m.description}</span>}
                   </div>
@@ -377,7 +377,7 @@ export default function ScoringModelsPage() {
                   <CardBody className="space-y-4">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <label className="block">
-                        <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+                        <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">
                           Name
                         </span>
                         <input
@@ -386,10 +386,10 @@ export default function ScoringModelsPage() {
                             setMetaForm({ ...metaForm, name: e.target.value })
                             setMetaDirty(true)
                           }}
-                          className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                          className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500 focus:outline-none"
                         />
                       </label>
-                      <div className="flex items-end text-xs text-slate-500">
+                      <div className="flex items-end text-xs text-stone-500">
                         Version {detail.model.version} · created{' '}
                         {detail.model.created_at
                           ? new Date(detail.model.created_at).toLocaleDateString(undefined, {
@@ -399,7 +399,7 @@ export default function ScoringModelsPage() {
                       </div>
                     </div>
                     <label className="block">
-                      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+                      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">
                         Description
                       </span>
                       <textarea
@@ -409,7 +409,7 @@ export default function ScoringModelsPage() {
                           setMetaDirty(true)
                         }}
                         rows={2}
-                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                        className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500 focus:outline-none"
                       />
                     </label>
                     {metaDirty && (
@@ -426,7 +426,7 @@ export default function ScoringModelsPage() {
                 <Card>
                   <CardHeader>
                     <h2 className="text-base font-semibold text-white">Risk band thresholds</h2>
-                    <p className="mt-1 text-xs text-slate-500">
+                    <p className="mt-1 text-xs text-stone-500">
                       Minimum score for each band. Scores at or above a threshold fall into that band.
                     </p>
                   </CardHeader>
@@ -434,7 +434,7 @@ export default function ScoringModelsPage() {
                     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
                       {BAND_ORDER.map((band) => (
                         <label key={band} className="block">
-                          <span className="mb-1 flex items-center gap-1 text-xs font-medium capitalize text-slate-300">
+                          <span className="mb-1 flex items-center gap-1 text-xs font-medium capitalize text-stone-300">
                             <span
                               className={`h-2 w-2 rounded-full ${
                                 band === 'low'
@@ -442,7 +442,7 @@ export default function ScoringModelsPage() {
                                   : band === 'moderate'
                                     ? 'bg-sky-400'
                                     : band === 'elevated'
-                                      ? 'bg-amber-400'
+                                      ? 'bg-indigo-400'
                                       : band === 'high'
                                         ? 'bg-orange-400'
                                         : 'bg-rose-400'
@@ -455,7 +455,7 @@ export default function ScoringModelsPage() {
                             step="any"
                             value={thresholdDraft[band] ?? ''}
                             onChange={(e) => updateThreshold(band, num(e.target.value))}
-                            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm tabular-nums text-slate-200 focus:border-amber-500 focus:outline-none"
+                            className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm tabular-nums text-stone-200 focus:border-indigo-500 focus:outline-none"
                           />
                         </label>
                       ))}
@@ -468,9 +468,9 @@ export default function ScoringModelsPage() {
                   <CardHeader className="flex items-center justify-between">
                     <div>
                       <h2 className="text-base font-semibold text-white">Factor weights &amp; bands</h2>
-                      <p className="mt-1 text-xs text-slate-500">
+                      <p className="mt-1 text-xs text-stone-500">
                         Total weight:{' '}
-                        <span className="tabular-nums text-slate-300">{totalWeight.toFixed(2)}</span>
+                        <span className="tabular-nums text-stone-300">{totalWeight.toFixed(2)}</span>
                       </p>
                     </div>
                     <Button variant="secondary" onClick={addFactor}>
@@ -479,40 +479,40 @@ export default function ScoringModelsPage() {
                   </CardHeader>
                   <CardBody className="space-y-4">
                     {factorDraft.length === 0 ? (
-                      <p className="text-sm text-slate-500">No factors defined. Add one to start scoring.</p>
+                      <p className="text-sm text-stone-500">No factors defined. Add one to start scoring.</p>
                     ) : (
                       factorDraft.map((f, fIdx) => {
                         const weightPct = totalWeight > 0 ? (num(f.weight) / totalWeight) * 100 : 0
                         return (
                           <div
                             key={f.id ?? `new-${fIdx}`}
-                            className="rounded-xl border border-slate-800 bg-slate-950/40 p-4"
+                            className="rounded-xl border border-stone-800 bg-stone-950/40 p-4"
                           >
                             <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1fr_140px_auto] sm:items-end">
                               <label className="block">
-                                <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-slate-500">
+                                <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-stone-500">
                                   Factor key
                                 </span>
                                 <input
                                   value={f.factor_key}
                                   onChange={(e) => updateFactor(fIdx, { factor_key: e.target.value })}
                                   placeholder="compa_ratio"
-                                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 focus:border-amber-500 focus:outline-none"
+                                  className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 font-mono text-xs text-stone-200 focus:border-indigo-500 focus:outline-none"
                                 />
                               </label>
                               <label className="block">
-                                <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-slate-500">
+                                <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-stone-500">
                                   Label
                                 </span>
                                 <input
                                   value={f.label}
                                   onChange={(e) => updateFactor(fIdx, { label: e.target.value })}
                                   placeholder="Compensation ratio"
-                                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                                  className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500 focus:outline-none"
                                 />
                               </label>
                               <label className="block">
-                                <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-slate-500">
+                                <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-stone-500">
                                   Weight
                                 </span>
                                 <input
@@ -520,7 +520,7 @@ export default function ScoringModelsPage() {
                                   step="any"
                                   value={f.weight}
                                   onChange={(e) => updateFactor(fIdx, { weight: num(e.target.value) })}
-                                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm tabular-nums text-slate-200 focus:border-amber-500 focus:outline-none"
+                                  className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm tabular-nums text-stone-200 focus:border-indigo-500 focus:outline-none"
                                 />
                               </label>
                               <Button variant="ghost" onClick={() => removeFactor(fIdx)}>
@@ -530,13 +530,13 @@ export default function ScoringModelsPage() {
 
                             {/* Weight share bar */}
                             <div className="mt-3">
-                              <div className="mb-1 flex justify-between text-[11px] text-slate-500">
+                              <div className="mb-1 flex justify-between text-[11px] text-stone-500">
                                 <span>Weight share</span>
                                 <span className="tabular-nums">{weightPct.toFixed(0)}%</span>
                               </div>
-                              <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                              <div className="h-1.5 w-full overflow-hidden rounded-full bg-stone-800">
                                 <div
-                                  className="h-full rounded-full bg-amber-500"
+                                  className="h-full rounded-full bg-indigo-500"
                                   style={{ width: `${Math.min(100, Math.max(0, weightPct))}%` }}
                                 />
                               </div>
@@ -545,18 +545,18 @@ export default function ScoringModelsPage() {
                             {/* Bands */}
                             <div className="mt-4">
                               <div className="mb-2 flex items-center justify-between">
-                                <span className="text-[11px] font-medium uppercase tracking-wide text-slate-500">
+                                <span className="text-[11px] font-medium uppercase tracking-wide text-stone-500">
                                   Scoring bands (raw value range → score)
                                 </span>
                                 <button
                                   onClick={() => addBand(fIdx)}
-                                  className="text-xs text-amber-400 hover:text-amber-300"
+                                  className="text-xs text-indigo-400 hover:text-indigo-300"
                                 >
                                   + Add band
                                 </button>
                               </div>
                               {f.bands.length === 0 ? (
-                                <p className="text-xs text-slate-600">No bands. Add at least one.</p>
+                                <p className="text-xs text-stone-600">No bands. Add at least one.</p>
                               ) : (
                                 <div className="space-y-2">
                                   {f.bands.map((b, bIdx) => (
@@ -570,7 +570,7 @@ export default function ScoringModelsPage() {
                                         value={b.min}
                                         onChange={(e) => updateBand(fIdx, bIdx, { min: num(e.target.value) })}
                                         placeholder="min"
-                                        className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs tabular-nums text-slate-200 focus:border-amber-500 focus:outline-none"
+                                        className="w-full rounded-md border border-stone-700 bg-stone-950 px-2 py-1.5 text-xs tabular-nums text-stone-200 focus:border-indigo-500 focus:outline-none"
                                       />
                                       <input
                                         type="number"
@@ -578,7 +578,7 @@ export default function ScoringModelsPage() {
                                         value={b.max}
                                         onChange={(e) => updateBand(fIdx, bIdx, { max: num(e.target.value) })}
                                         placeholder="max"
-                                        className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs tabular-nums text-slate-200 focus:border-amber-500 focus:outline-none"
+                                        className="w-full rounded-md border border-stone-700 bg-stone-950 px-2 py-1.5 text-xs tabular-nums text-stone-200 focus:border-indigo-500 focus:outline-none"
                                       />
                                       <input
                                         type="number"
@@ -588,11 +588,11 @@ export default function ScoringModelsPage() {
                                           updateBand(fIdx, bIdx, { score: num(e.target.value) })
                                         }
                                         placeholder="score"
-                                        className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs tabular-nums text-amber-300 focus:border-amber-500 focus:outline-none"
+                                        className="w-full rounded-md border border-stone-700 bg-stone-950 px-2 py-1.5 text-xs tabular-nums text-indigo-300 focus:border-indigo-500 focus:outline-none"
                                       />
                                       <button
                                         onClick={() => removeBand(fIdx, bIdx)}
-                                        className="px-2 text-slate-500 hover:text-rose-400"
+                                        className="px-2 text-stone-500 hover:text-rose-400"
                                         aria-label="Remove band"
                                       >
                                         ✕
@@ -607,8 +607,8 @@ export default function ScoringModelsPage() {
                       })
                     )}
                   </CardBody>
-                  <div className="flex items-center justify-between border-t border-slate-800 px-5 py-4">
-                    <span className="text-xs text-slate-500">
+                  <div className="flex items-center justify-between border-t border-stone-800 px-5 py-4">
+                    <span className="text-xs text-stone-500">
                       {factorsDirty ? 'Unsaved changes' : 'All changes saved'}
                     </span>
                     <Button onClick={saveFactors} disabled={savingFactors || !factorsDirty}>
@@ -640,16 +640,16 @@ export default function ScoringModelsPage() {
       >
         <div className="space-y-4">
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Name</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Name</span>
             <input
               value={createForm.name}
               onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
               placeholder="e.g. 2026 Flight-Risk Model"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-amber-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-500 focus:border-indigo-500 focus:outline-none"
             />
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">
               Description
             </span>
             <textarea
@@ -657,10 +657,10 @@ export default function ScoringModelsPage() {
               onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
               rows={2}
               placeholder="Optional. Default factors are seeded automatically."
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-amber-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-500 focus:border-indigo-500 focus:outline-none"
             />
           </label>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-stone-500">
             A starter set of factors is seeded on creation; tune their weights and bands afterward.
           </p>
           {actionError && <p className="text-sm text-rose-300">{actionError}</p>}

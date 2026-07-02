@@ -169,7 +169,7 @@ export default function ManagersPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-white">Manager Scorecards</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Regrettable attrition, flight risk, and cost exposure by people manager. Outliers run hot
             against their peers.
           </p>
@@ -205,19 +205,19 @@ export default function ManagersPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search manager..."
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-56 rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
-            <label className="flex items-center gap-2 text-sm text-slate-300">
+            <label className="flex items-center gap-2 text-sm text-stone-300">
               <input
                 type="checkbox"
                 checked={onlyOutliers}
                 onChange={(e) => setOnlyOutliers(e.target.checked)}
-                className="h-4 w-4 accent-amber-500"
+                className="h-4 w-4 accent-indigo-500"
               />
               Outliers only
             </label>
           </div>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-stone-500">
             {filtered.length} of {scorecards.length}
           </span>
         </CardHeader>
@@ -277,13 +277,13 @@ export default function ManagersPage() {
                     <TD className="text-right tabular-nums">{fmtRisk(r.avg_flight_risk)}</TD>
                     <TD>
                       <div className="flex items-center gap-2">
-                        <div className="h-1.5 w-24 overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-1.5 w-24 overflow-hidden rounded-full bg-stone-800">
                           <div
-                            className="h-full rounded-full bg-amber-500"
+                            className="h-full rounded-full bg-indigo-500"
                             style={{ width: `${Math.min(100, (r.replacement_cost_exposure / maxExposure) * 100)}%` }}
                           />
                         </div>
-                        <span className="tabular-nums text-slate-300">{fmtMoney(r.replacement_cost_exposure)}</span>
+                        <span className="tabular-nums text-stone-300">{fmtMoney(r.replacement_cost_exposure)}</span>
                       </div>
                     </TD>
                     <TD>
@@ -293,9 +293,9 @@ export default function ManagersPage() {
                         <Badge tone="low">In range</Badge>
                       )}
                     </TD>
-                    <TD className="text-right text-slate-400">{r.period}</TD>
+                    <TD className="text-right text-stone-400">{r.period}</TD>
                     <TD className="text-right">
-                      <span className="text-amber-400">View →</span>
+                      <span className="text-indigo-400">View →</span>
                     </TD>
                   </TR>
                 ))}
@@ -328,7 +328,7 @@ export default function ManagersPage() {
 
             <div>
               <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-slate-200">Team roster</h3>
+                <h3 className="text-sm font-semibold text-stone-200">Team roster</h3>
                 {detail.scorecard.is_outlier && <Badge tone="critical">Outlier manager</Badge>}
               </div>
               {detail.team.length === 0 ? (
@@ -351,12 +351,12 @@ export default function ManagersPage() {
                       .map((m) => (
                         <TR key={m.id}>
                           <TD className="font-medium text-white">{m.full_name}</TD>
-                          <TD className="text-slate-400">{m.level ?? '—'}</TD>
+                          <TD className="text-stone-400">{m.level ?? '—'}</TD>
                           <TD className="text-right tabular-nums">
                             {m.score != null ? fmtRisk(m.score) : '—'}
                           </TD>
                           <TD>{m.band ? <Badge tone={bandTone(m.band)}>{m.band}</Badge> : '—'}</TD>
-                          <TD className="text-slate-400">{m.status ?? '—'}</TD>
+                          <TD className="text-stone-400">{m.status ?? '—'}</TD>
                         </TR>
                       ))}
                   </TBody>

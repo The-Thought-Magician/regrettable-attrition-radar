@@ -180,7 +180,7 @@ export default function AlertsPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-bold text-white">Alerts</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-stone-500">
             Retention signals: flight-risk spikes, regrettable exits, manager outliers, budget exposure.
           </p>
         </div>
@@ -214,13 +214,13 @@ export default function AlertsPage() {
 
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-1 rounded-lg border border-slate-800 bg-slate-950 p-1">
+          <div className="flex flex-wrap items-center gap-1 rounded-lg border border-stone-800 bg-stone-950 p-1">
             {(['all', 'unread', 'read'] as Filter[]).map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
                 className={`rounded-md px-3 py-1 text-xs font-medium capitalize transition-colors ${
-                  filter === f ? 'bg-amber-500/15 text-amber-300' : 'text-slate-400 hover:text-slate-200'
+                  filter === f ? 'bg-indigo-500/15 text-indigo-300' : 'text-stone-400 hover:text-stone-200'
                 }`}
               >
                 {f}
@@ -231,7 +231,7 @@ export default function AlertsPage() {
             <select
               value={kindFilter}
               onChange={(e) => setKindFilter(e.target.value)}
-              className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs text-slate-200 focus:border-amber-500/50 focus:outline-none"
+              className="rounded-lg border border-stone-800 bg-stone-950 px-3 py-1.5 text-xs text-stone-200 focus:border-indigo-500/50 focus:outline-none"
             >
               <option value="all">All kinds</option>
               {kinds.map((k) => (
@@ -244,7 +244,7 @@ export default function AlertsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search alerts…"
-              className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs text-slate-200 placeholder:text-slate-600 focus:border-amber-500/50 focus:outline-none"
+              className="rounded-lg border border-stone-800 bg-stone-950 px-3 py-1.5 text-xs text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/50 focus:outline-none"
             />
             {alerts.some((a) => a.is_read) && (
               <Button variant="ghost" onClick={dismissAllRead} disabled={busy !== null}>
@@ -273,27 +273,27 @@ export default function AlertsPage() {
                   key={a.id}
                   className={`flex items-start gap-3 rounded-xl border px-4 py-3 transition-colors ${
                     a.is_read
-                      ? 'border-slate-800 bg-slate-900/40'
-                      : 'border-amber-500/30 bg-amber-500/[0.04]'
+                      ? 'border-stone-800 bg-stone-900/40'
+                      : 'border-indigo-500/30 bg-indigo-500/[0.04]'
                   }`}
                 >
                   <span
                     className={`mt-1.5 h-2 w-2 flex-shrink-0 rounded-full ${
-                      a.is_read ? 'bg-slate-700' : 'bg-amber-400'
+                      a.is_read ? 'bg-stone-700' : 'bg-indigo-400'
                     }`}
                     aria-hidden
                   />
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <Badge tone={kindTone(a.kind)}>{a.kind}</Badge>
-                      <span className={`text-sm font-semibold ${a.is_read ? 'text-slate-300' : 'text-white'}`}>
+                      <span className={`text-sm font-semibold ${a.is_read ? 'text-stone-300' : 'text-white'}`}>
                         {a.title}
                       </span>
-                      <span className="ml-auto text-xs text-slate-500" title={fmtDate(a.created_at)}>
+                      <span className="ml-auto text-xs text-stone-500" title={fmtDate(a.created_at)}>
                         {relative(a.created_at)}
                       </span>
                     </div>
-                    {a.body && <p className="mt-1 text-sm text-slate-400">{a.body}</p>}
+                    {a.body && <p className="mt-1 text-sm text-stone-400">{a.body}</p>}
                   </div>
                   <div className="flex flex-shrink-0 flex-col gap-1 sm:flex-row">
                     {!a.is_read && (

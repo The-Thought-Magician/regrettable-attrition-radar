@@ -172,7 +172,7 @@ export default function FlightRiskPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Flight Risk</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Ranked attrition risk per employee against the active scoring model.
           </p>
         </div>
@@ -210,12 +210,12 @@ export default function FlightRiskPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search name, email, dept, role…"
-              className="w-64 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-64 rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
             <select
               value={bandFilter}
               onChange={(e) => setBandFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               <option value="all">All bands</option>
               {bands.map((b) => (
@@ -225,7 +225,7 @@ export default function FlightRiskPage() {
               ))}
             </select>
           </div>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-stone-500">
             {filtered.length} of {rows.length} shown
           </span>
         </CardHeader>
@@ -258,17 +258,17 @@ export default function FlightRiskPage() {
               <TBody>
                 {filtered.map((r, i) => (
                   <TR key={r.id ?? r.employee_id}>
-                    <TD className="text-slate-500">{i + 1}</TD>
+                    <TD className="text-stone-500">{i + 1}</TD>
                     <TD>
                       <div className="font-medium text-white">{r.full_name ?? r.employee_id}</div>
-                      {r.email && <div className="text-xs text-slate-500">{r.email}</div>}
+                      {r.email && <div className="text-xs text-stone-500">{r.email}</div>}
                     </TD>
-                    <TD className="text-slate-400">{r.department_name ?? '—'}</TD>
-                    <TD className="text-slate-400">
+                    <TD className="text-stone-400">{r.department_name ?? '—'}</TD>
+                    <TD className="text-stone-400">
                       {r.role_title ?? '—'}
-                      {r.level ? <span className="ml-1 text-xs text-slate-600">({r.level})</span> : null}
+                      {r.level ? <span className="ml-1 text-xs text-stone-600">({r.level})</span> : null}
                     </TD>
-                    <TD className="text-right tabular-nums font-semibold text-amber-300">{fmtScore(r.score)}</TD>
+                    <TD className="text-right tabular-nums font-semibold text-indigo-300">{fmtScore(r.score)}</TD>
                     <TD>
                       <Badge tone={bandTone(r.band)}>{r.band ?? '—'}</Badge>
                     </TD>
@@ -286,20 +286,20 @@ export default function FlightRiskPage() {
       </Card>
 
       {selected && (
-        <Card className="border-amber-500/30">
+        <Card className="border-indigo-500/30">
           <CardHeader className="flex items-center justify-between">
             <div>
               <h2 className="text-base font-semibold text-white">
                 What-if · {selected.full_name ?? selected.employee_id}
               </h2>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-stone-500">
                 Current score{' '}
-                <span className="font-semibold text-amber-300">{fmtScore(selected.score)}</span>{' '}
+                <span className="font-semibold text-indigo-300">{fmtScore(selected.score)}</span>{' '}
                 <Badge tone={bandTone(selected.band)}>{selected.band}</Badge> — try input overrides without
                 persisting.
               </p>
             </div>
-            <button onClick={closeWhatIf} className="text-slate-500 hover:text-white" aria-label="Close what-if">
+            <button onClick={closeWhatIf} className="text-stone-500 hover:text-white" aria-label="Close what-if">
               ✕
             </button>
           </CardHeader>
@@ -307,7 +307,7 @@ export default function FlightRiskPage() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {WHATIF_FIELDS.map((f) => (
                 <label key={f.key} className="block">
-                  <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+                  <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">
                     {f.label}
                   </span>
                   <input
@@ -316,7 +316,7 @@ export default function FlightRiskPage() {
                     value={whatIfInputs[f.key] ?? ''}
                     placeholder={f.placeholder}
                     onChange={(e) => setWhatIfInputs((p) => ({ ...p, [f.key]: e.target.value }))}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                    className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
                   />
                 </label>
               ))}
@@ -338,22 +338,22 @@ export default function FlightRiskPage() {
             )}
 
             {whatIfResult && (
-              <div className="space-y-4 rounded-xl border border-slate-800 bg-slate-950/60 p-5">
+              <div className="space-y-4 rounded-xl border border-stone-800 bg-stone-950/60 p-5">
                 <div className="flex flex-wrap items-center gap-6">
                   <div>
-                    <div className="text-xs uppercase tracking-wide text-slate-500">Projected score</div>
-                    <div className="mt-1 text-2xl font-bold tabular-nums text-amber-300">
+                    <div className="text-xs uppercase tracking-wide text-stone-500">Projected score</div>
+                    <div className="mt-1 text-2xl font-bold tabular-nums text-indigo-300">
                       {fmtScore(whatIfResult.score)}
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-wide text-slate-500">Projected band</div>
+                    <div className="text-xs uppercase tracking-wide text-stone-500">Projected band</div>
                     <div className="mt-2">
                       <Badge tone={bandTone(whatIfResult.band)}>{whatIfResult.band}</Badge>
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-wide text-slate-500">Delta vs current</div>
+                    <div className="text-xs uppercase tracking-wide text-stone-500">Delta vs current</div>
                     <div
                       className={`mt-1 text-2xl font-bold tabular-nums ${
                         whatIfResult.score - selected.score <= 0 ? 'text-emerald-400' : 'text-rose-400'
@@ -367,7 +367,7 @@ export default function FlightRiskPage() {
 
                 {Array.isArray(whatIfResult.factor_breakdown) && whatIfResult.factor_breakdown.length > 0 && (
                   <div>
-                    <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <div className="mb-2 text-xs font-medium uppercase tracking-wide text-stone-400">
                       Factor contributions
                     </div>
                     <div className="space-y-2">
@@ -379,11 +379,11 @@ export default function FlightRiskPage() {
                         const pct = Math.min(100, (Math.abs(fb.contribution) / max) * 100)
                         return (
                           <div key={fb.key} className="flex items-center gap-3">
-                            <div className="w-40 shrink-0 truncate text-sm text-slate-300">{fb.label ?? fb.key}</div>
-                            <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-slate-800">
-                              <div className="h-full rounded-full bg-amber-500/70" style={{ width: `${pct}%` }} />
+                            <div className="w-40 shrink-0 truncate text-sm text-stone-300">{fb.label ?? fb.key}</div>
+                            <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-stone-800">
+                              <div className="h-full rounded-full bg-indigo-500/70" style={{ width: `${pct}%` }} />
                             </div>
-                            <div className="w-16 shrink-0 text-right tabular-nums text-sm text-slate-400">
+                            <div className="w-16 shrink-0 text-right tabular-nums text-sm text-stone-400">
                               {fmtScore(fb.contribution)}
                             </div>
                           </div>

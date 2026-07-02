@@ -269,7 +269,7 @@ export default function ImportsPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-bold text-white">Imports &amp; Data</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-stone-500">
             Load your workforce: bulk CSV import, a one-click sample org, or add people manually.
           </p>
         </div>
@@ -306,14 +306,14 @@ export default function ImportsPage() {
         <CardHeader className="flex items-center justify-between">
           <div>
             <h2 className="text-sm font-semibold text-white">CSV import</h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+            <p className="mt-0.5 text-xs text-stone-500">
               Headers: full_name (required), email, level, hire_date, salary, performance_rating, department, location, role, status.
             </p>
           </div>
           <button
             type="button"
             onClick={() => handleParse(SAMPLE_CSV)}
-            className="text-xs font-medium text-amber-400 hover:text-amber-300"
+            className="text-xs font-medium text-indigo-400 hover:text-indigo-300"
           >
             Use example
           </button>
@@ -328,25 +328,25 @@ export default function ImportsPage() {
                 const f = e.target.files?.[0]
                 if (f) onFile(f)
               }}
-              className="block text-sm text-slate-400 file:mr-3 file:rounded-lg file:border-0 file:bg-slate-800 file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-200 hover:file:bg-slate-700"
+              className="block text-sm text-stone-400 file:mr-3 file:rounded-lg file:border-0 file:bg-stone-800 file:px-4 file:py-2 file:text-sm file:font-medium file:text-stone-200 hover:file:bg-stone-700"
             />
-            <span className="text-xs text-slate-600">or paste below</span>
+            <span className="text-xs text-stone-600">or paste below</span>
           </div>
           <textarea
             value={csvText}
             onChange={(e) => handleParse(e.target.value)}
             rows={6}
             placeholder={SAMPLE_CSV}
-            className="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 placeholder:text-slate-600 focus:border-amber-500/50 focus:outline-none"
+            className="w-full rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 font-mono text-xs text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/50 focus:outline-none"
           />
 
           {parseError && <p className="text-sm text-rose-400">{parseError}</p>}
 
           {parsed && parsed.rows.length > 0 && (
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm text-slate-400">
+              <div className="flex items-center gap-2 text-sm text-stone-400">
                 <Badge tone="moderate">{parsed.rows.length} rows parsed</Badge>
-                <span className="text-xs text-slate-600">Preview (first 5)</span>
+                <span className="text-xs text-stone-600">Preview (first 5)</span>
               </div>
               <Table>
                 <THead>
@@ -424,14 +424,14 @@ export default function ImportsPage() {
                       </TD>
                       <TD className="max-w-xs">
                         {errs.length === 0 ? (
-                          <span className="text-slate-600">—</span>
+                          <span className="text-stone-600">—</span>
                         ) : (
                           <span className="text-xs text-rose-400" title={JSON.stringify(errs)}>
                             {errs.length} issue(s)
                           </span>
                         )}
                       </TD>
-                      <TD className="whitespace-nowrap text-xs text-slate-500">{fmtDate(j.created_at)}</TD>
+                      <TD className="whitespace-nowrap text-xs text-stone-500">{fmtDate(j.created_at)}</TD>
                     </TR>
                   )
                 })}
@@ -533,12 +533,12 @@ export default function ImportsPage() {
 }
 
 const inputCls =
-  'w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/50 focus:outline-none'
+  'w-full rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/50 focus:outline-none'
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-slate-400">{label}</span>
+      <span className="mb-1 block text-xs font-medium text-stone-400">{label}</span>
       {children}
     </label>
   )

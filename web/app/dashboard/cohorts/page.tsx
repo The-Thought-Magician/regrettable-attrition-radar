@@ -66,7 +66,7 @@ function SurvivalChart({ points }: { points: CurvePoint[] }) {
   const padT = 16
   const padR = 16
   const sorted = [...points].sort((a, b) => a.month - b.month)
-  if (sorted.length === 0) return <div className="text-sm text-slate-500">No curve points.</div>
+  if (sorted.length === 0) return <div className="text-sm text-stone-500">No curve points.</div>
   const maxMonth = Math.max(...sorted.map((p) => p.month), 1)
   const xFor = (m: number) => padL + (m / maxMonth) * (W - padL - padR)
   const yFor = (r: number) => padT + (1 - normRetention(r) / 100) * (H - padT - padB)
@@ -107,7 +107,7 @@ function ComparisonChart({ series }: { series: CurveSeries[] }) {
   const padT = 16
   const padR = 16
   const allMonths = series.flatMap((s) => s.points.map((p) => p.month))
-  if (allMonths.length === 0) return <div className="text-sm text-slate-500">No comparison data.</div>
+  if (allMonths.length === 0) return <div className="text-sm text-stone-500">No comparison data.</div>
   const maxMonth = Math.max(...allMonths, 1)
   const xFor = (m: number) => padL + (m / maxMonth) * (W - padL - padR)
   const yFor = (r: number) => padT + (1 - normRetention(r) / 100) * (H - padT - padB)
@@ -140,7 +140,7 @@ function ComparisonChart({ series }: { series: CurveSeries[] }) {
       </div>
       <div className="mt-3 flex flex-wrap gap-3">
         {series.map((s, si) => (
-          <div key={s.cohortId ?? s.name + si} className="flex items-center gap-2 text-xs text-slate-300">
+          <div key={s.cohortId ?? s.name + si} className="flex items-center gap-2 text-xs text-stone-300">
             <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: SERIES_COLORS[si % SERIES_COLORS.length] }} />
             {s.name}
           </div>
@@ -286,7 +286,7 @@ export default function CohortsPage() {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-white">Cohorts &amp; Attrition Curves</h1>
-          <p className="mt-1 text-sm text-slate-400">Build employee cohorts and compare survival curves across the org.</p>
+          <p className="mt-1 text-sm text-stone-400">Build employee cohorts and compare survival curves across the org.</p>
         </div>
         <Button onClick={() => setCreateOpen(true)}>+ New cohort</Button>
       </div>
@@ -311,12 +311,12 @@ export default function CohortsPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search..."
-                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
               />
               <select
                 value={dimFilter}
                 onChange={(e) => setDimFilter(e.target.value)}
-                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+                className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
               >
                 <option value="">All dimensions</option>
                 {DIMENSIONS.map((d) => (
@@ -345,9 +345,9 @@ export default function CohortsPage() {
                 </THead>
                 <TBody>
                   {filtered.map((c) => (
-                    <TR key={c.id} className={selectedId === c.id ? 'bg-amber-500/5' : ''}>
+                    <TR key={c.id} className={selectedId === c.id ? 'bg-indigo-500/5' : ''}>
                       <TD>
-                        <button onClick={() => loadCurve(c.id)} className="font-medium text-amber-300 hover:underline">
+                        <button onClick={() => loadCurve(c.id)} className="font-medium text-indigo-300 hover:underline">
                           {c.name}
                         </button>
                       </TD>
@@ -381,22 +381,22 @@ export default function CohortsPage() {
             ) : curve ? (
               <div className="space-y-4">
                 {curve.earlyFlag && (
-                  <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-300">
+                  <div className="flex items-center gap-2 rounded-lg border border-indigo-500/30 bg-indigo-500/10 px-3 py-2 text-sm text-indigo-300">
                     <span>⚠</span> Early-attrition flag: this cohort is losing people faster than expected.
                   </div>
                 )}
                 <SurvivalChart points={curve.points} />
                 <div className="grid grid-cols-5 gap-2">
                   {(['m3', 'm6', 'm12', 'm18', 'm24'] as const).map((k) => (
-                    <div key={k} className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-center">
-                      <div className="text-[10px] uppercase tracking-wide text-slate-500">{k.replace('m', '')} mo</div>
+                    <div key={k} className="rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-center">
+                      <div className="text-[10px] uppercase tracking-wide text-stone-500">{k.replace('m', '')} mo</div>
                       <div className="mt-1 text-sm font-bold tabular-nums text-white">{pct(curve.retention?.[k])}</div>
                     </div>
                   ))}
                 </div>
               </div>
             ) : (
-              <div className="text-sm text-slate-500">No curve data.</div>
+              <div className="text-sm text-stone-500">No curve data.</div>
             )}
           </CardBody>
         </Card>
@@ -409,7 +409,7 @@ export default function CohortsPage() {
           <select
             value={compareDim}
             onChange={(e) => loadCurves(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
           >
             {DIMENSIONS.map((d) => (
               <option key={d} value={d}>{d.replace('_', ' ')}</option>
@@ -447,20 +447,20 @@ export default function CohortsPage() {
             <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{formErr}</div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="2024 H1 hires"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Dimension</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Dimension</label>
             <select
               value={dimension}
               onChange={(e) => setDimension(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               {DIMENSIONS.map((d) => (
                 <option key={d} value={d}>{d.replace('_', ' ')}</option>
@@ -468,15 +468,15 @@ export default function CohortsPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Filters (JSON)</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Filters (JSON)</label>
             <textarea
               value={filtersText}
               onChange={(e) => setFiltersText(e.target.value)}
               rows={4}
               placeholder='{"department_id": "...", "level": "IC4"}'
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 font-mono text-xs text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
-            <p className="mt-1 text-xs text-slate-500">Optional key/value filters that scope which employees belong to the cohort.</p>
+            <p className="mt-1 text-xs text-stone-500">Optional key/value filters that scope which employees belong to the cohort.</p>
           </div>
         </form>
       </Modal>

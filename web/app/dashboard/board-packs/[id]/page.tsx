@@ -134,7 +134,7 @@ export default function BoardPackDetailPage() {
   if (error) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/board-packs" className="text-sm text-amber-400 hover:text-amber-300">
+        <Link href="/dashboard/board-packs" className="text-sm text-indigo-400 hover:text-indigo-300">
           ← Back to board packs
         </Link>
         <EmptyState
@@ -154,7 +154,7 @@ export default function BoardPackDetailPage() {
   if (!pack) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/board-packs" className="text-sm text-amber-400 hover:text-amber-300">
+        <Link href="/dashboard/board-packs" className="text-sm text-indigo-400 hover:text-indigo-300">
           ← Back to board packs
         </Link>
         <EmptyState title="Board pack not found" description="It may have been deleted." icon="📄" />
@@ -171,11 +171,11 @@ export default function BoardPackDetailPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2">
-          <Link href="/dashboard/board-packs" className="text-sm text-amber-400 hover:text-amber-300">
+          <Link href="/dashboard/board-packs" className="text-sm text-indigo-400 hover:text-indigo-300">
             ← Back to board packs
           </Link>
           <h1 className="text-2xl font-bold text-white">{pack.title}</h1>
-          <div className="flex flex-wrap items-center gap-2 text-sm text-slate-400">
+          <div className="flex flex-wrap items-center gap-2 text-sm text-stone-400">
             <Badge tone="amber">{pack.period}</Badge>
             <span>
               Assembled{' '}
@@ -215,7 +215,7 @@ export default function BoardPackDetailPage() {
         </CardHeader>
         <CardBody>
           {pack.narrative ? (
-            <div className="space-y-3 text-sm leading-relaxed text-slate-300">
+            <div className="space-y-3 text-sm leading-relaxed text-stone-300">
               {pack.narrative.split(/\n{2,}/).map((para, i) => (
                 <p key={i} className="whitespace-pre-wrap">
                   {para}
@@ -223,7 +223,7 @@ export default function BoardPackDetailPage() {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-slate-500">No narrative was generated for this period.</p>
+            <p className="text-sm text-stone-500">No narrative was generated for this period.</p>
           )}
         </CardBody>
       </Card>
@@ -244,7 +244,7 @@ export default function BoardPackDetailPage() {
             <CardBody className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-slate-900/80 text-xs uppercase tracking-wide text-slate-400">
+                  <thead className="bg-stone-900/80 text-xs uppercase tracking-wide text-stone-400">
                     <tr>
                       {columns.map((col) => (
                         <th key={col} className="px-4 py-3 font-medium">
@@ -253,13 +253,13 @@ export default function BoardPackDetailPage() {
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800">
+                  <tbody className="divide-y divide-stone-800">
                     {rows.map((row, ri) => (
-                      <tr key={ri} className="hover:bg-slate-900/50">
+                      <tr key={ri} className="hover:bg-stone-900/50">
                         {columns.map((col) => {
                           const { display } = formatValue(col, row[col])
                           return (
-                            <td key={col} className="px-4 py-3 tabular-nums text-slate-200">
+                            <td key={col} className="px-4 py-3 tabular-nums text-stone-200">
                               {display}
                             </td>
                           )
@@ -283,10 +283,10 @@ export default function BoardPackDetailPage() {
           <CardBody className="space-y-4">
             {blobs.map(([key, value]) => (
               <div key={key}>
-                <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-400">
+                <div className="mb-1 text-xs font-medium uppercase tracking-wide text-stone-400">
                   {humanizeKey(key)}
                 </div>
-                <pre className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950/60 p-3 text-xs text-slate-300">
+                <pre className="overflow-x-auto rounded-lg border border-stone-800 bg-stone-950/60 p-3 text-xs text-stone-300">
                   {JSON.stringify(value, null, 2)}
                 </pre>
               </div>

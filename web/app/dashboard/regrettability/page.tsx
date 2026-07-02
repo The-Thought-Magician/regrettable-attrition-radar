@@ -213,7 +213,7 @@ export default function RegrettabilityPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-white">Regrettability Rule Sets</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Define what makes an exit regrettable. The active rule set drives auto-classification of exits.
           </p>
         </div>
@@ -250,7 +250,7 @@ export default function RegrettabilityPage() {
           {rules.map((r) => {
             const crit = normalizeCriteria(r.criteria)
             return (
-              <Card key={r.id} className={r.is_active ? 'ring-1 ring-amber-500/40' : ''}>
+              <Card key={r.id} className={r.is_active ? 'ring-1 ring-indigo-500/40' : ''}>
                 <CardHeader className="flex items-start justify-between gap-3">
                   <div>
                     <div className="flex items-center gap-2">
@@ -261,7 +261,7 @@ export default function RegrettabilityPage() {
                         <Badge tone="neutral">Inactive</Badge>
                       )}
                     </div>
-                    <p className="mt-1 text-xs text-slate-500">
+                    <p className="mt-1 text-xs text-stone-500">
                       Threshold {r.threshold != null ? r.threshold : '—'} · {crit.length} criteria
                     </p>
                   </div>
@@ -291,17 +291,17 @@ export default function RegrettabilityPage() {
                 </CardHeader>
                 <CardBody>
                   {crit.length === 0 ? (
-                    <p className="text-sm text-slate-500">No criteria defined.</p>
+                    <p className="text-sm text-stone-500">No criteria defined.</p>
                   ) : (
                     <ul className="space-y-2">
                       {crit.map((c, i) => (
                         <li
                           key={i}
-                          className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-950/50 px-3 py-2 text-xs"
+                          className="flex items-center justify-between rounded-lg border border-stone-800 bg-stone-950/50 px-3 py-2 text-xs"
                         >
-                          <span className="font-mono text-slate-300">
-                            <span className="text-amber-300">{c.field}</span>{' '}
-                            <span className="text-slate-500">{c.op}</span>{' '}
+                          <span className="font-mono text-stone-300">
+                            <span className="text-indigo-300">{c.field}</span>{' '}
+                            <span className="text-stone-500">{c.op}</span>{' '}
                             <span className="text-sky-300">{String(c.value)}</span>
                           </span>
                           {c.weight != null && (
@@ -342,16 +342,16 @@ export default function RegrettabilityPage() {
           )}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
               <input
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder="e.g. High-performer in critical role"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">
+              <label className="mb-1 block text-xs font-medium text-stone-400">
                 Threshold (regrettable score cutoff)
               </label>
               <input
@@ -360,14 +360,14 @@ export default function RegrettabilityPage() {
                 value={form.threshold}
                 onChange={(e) => setForm({ ...form, threshold: e.target.value })}
                 placeholder="0.5"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
               />
             </div>
           </div>
 
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <label className="text-xs font-medium text-slate-400">Criteria</label>
+              <label className="text-xs font-medium text-stone-400">Criteria</label>
               <Button variant="ghost" className="px-2 py-1 text-xs" onClick={addCriterion}>
                 + Add criterion
               </Button>
@@ -376,12 +376,12 @@ export default function RegrettabilityPage() {
               {form.criteria.map((c, i) => (
                 <div
                   key={i}
-                  className="grid grid-cols-12 items-center gap-2 rounded-lg border border-slate-800 bg-slate-950/50 p-2"
+                  className="grid grid-cols-12 items-center gap-2 rounded-lg border border-stone-800 bg-stone-950/50 p-2"
                 >
                   <select
                     value={c.field}
                     onChange={(e) => updateCriterion(i, { field: e.target.value })}
-                    className="col-span-4 rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs text-slate-200 focus:border-amber-500/60 focus:outline-none"
+                    className="col-span-4 rounded-md border border-stone-700 bg-stone-950 px-2 py-1.5 text-xs text-stone-200 focus:border-indigo-500/60 focus:outline-none"
                   >
                     {FIELDS.map((f) => (
                       <option key={f} value={f}>
@@ -392,7 +392,7 @@ export default function RegrettabilityPage() {
                   <select
                     value={c.op}
                     onChange={(e) => updateCriterion(i, { op: e.target.value })}
-                    className="col-span-2 rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs text-slate-200 focus:border-amber-500/60 focus:outline-none"
+                    className="col-span-2 rounded-md border border-stone-700 bg-stone-950 px-2 py-1.5 text-xs text-stone-200 focus:border-indigo-500/60 focus:outline-none"
                   >
                     {OPS.map((o) => (
                       <option key={o} value={o}>
@@ -404,7 +404,7 @@ export default function RegrettabilityPage() {
                     value={c.value}
                     onChange={(e) => updateCriterion(i, { value: e.target.value })}
                     placeholder="value"
-                    className="col-span-3 rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                    className="col-span-3 rounded-md border border-stone-700 bg-stone-950 px-2 py-1.5 text-xs text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
                   />
                   <input
                     type="number"
@@ -412,11 +412,11 @@ export default function RegrettabilityPage() {
                     value={c.weight ?? 1}
                     onChange={(e) => updateCriterion(i, { weight: Number(e.target.value) })}
                     title="weight"
-                    className="col-span-2 rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs text-slate-200 focus:border-amber-500/60 focus:outline-none"
+                    className="col-span-2 rounded-md border border-stone-700 bg-stone-950 px-2 py-1.5 text-xs text-stone-200 focus:border-indigo-500/60 focus:outline-none"
                   />
                   <button
                     onClick={() => removeCriterion(i)}
-                    className="col-span-1 text-slate-500 hover:text-rose-400"
+                    className="col-span-1 text-stone-500 hover:text-rose-400"
                     aria-label="Remove criterion"
                   >
                     ✕
@@ -424,7 +424,7 @@ export default function RegrettabilityPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-2 text-xs text-slate-600">
+            <p className="mt-2 text-xs text-stone-600">
               For the <span className="font-mono">in</span> operator, use a comma-separated list (e.g.{' '}
               <span className="font-mono">high,critical</span>).
             </p>

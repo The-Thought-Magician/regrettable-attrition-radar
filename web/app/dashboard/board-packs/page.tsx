@@ -105,7 +105,7 @@ export default function BoardPacksPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-white">Board Packs</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Assemble a board-ready retention briefing for a period. Each pack snapshots the headline metrics
             and an auto-written narrative.
           </p>
@@ -131,8 +131,8 @@ export default function BoardPacksPage() {
 
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-slate-200">All board packs</h2>
-          <span className="text-xs text-slate-500">{packs.length} total</span>
+          <h2 className="text-sm font-semibold text-stone-200">All board packs</h2>
+          <span className="text-xs text-stone-500">{packs.length} total</span>
         </CardHeader>
         <CardBody className="p-0">
           {packs.length === 0 ? (
@@ -159,16 +159,16 @@ export default function BoardPacksPage() {
                 {packs.map((p) => (
                   <TR key={p.id}>
                     <TD className="font-medium text-white">
-                      <Link href={`/dashboard/board-packs/${p.id}`} className="hover:text-amber-400">
+                      <Link href={`/dashboard/board-packs/${p.id}`} className="hover:text-indigo-400">
                         {p.title}
                       </Link>
                     </TD>
                     <TD>
                       <Badge tone="amber">{p.period}</Badge>
                     </TD>
-                    <TD className="text-slate-400">{metricSummary(p.metrics)}</TD>
-                    <TD className="text-slate-400">{p.narrative ? `${p.narrative.length} chars` : '—'}</TD>
-                    <TD className="text-slate-400">{new Date(p.created_at).toLocaleDateString()}</TD>
+                    <TD className="text-stone-400">{metricSummary(p.metrics)}</TD>
+                    <TD className="text-stone-400">{p.narrative ? `${p.narrative.length} chars` : '—'}</TD>
+                    <TD className="text-stone-400">{new Date(p.created_at).toLocaleDateString()}</TD>
                     <TD className="text-right">
                       <div className="flex justify-end gap-2">
                         <Link href={`/dashboard/board-packs/${p.id}`}>
@@ -207,25 +207,25 @@ export default function BoardPacksPage() {
         }
       >
         <div className="space-y-4">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-stone-400">
             Metrics and the narrative are computed from your current data at assembly time. Pick the reporting
             period below.
           </p>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Title</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Title</label>
             <input
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Period</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Period</label>
             <input
               value={form.period}
               onChange={(e) => setForm({ ...form, period: e.target.value })}
               placeholder="e.g. Q2 2026"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
         </div>

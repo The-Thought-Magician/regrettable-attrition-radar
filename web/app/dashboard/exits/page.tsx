@@ -234,7 +234,7 @@ export default function ExitsPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Exits</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Record departures, track the regrettable rate, and override classifications.
           </p>
         </div>
@@ -262,11 +262,11 @@ export default function ExitsPage() {
       <Card>
         <CardHeader>
           <h2 className="text-base font-semibold text-white">Regrettable rate trend</h2>
-          <p className="text-xs text-slate-500">Per-period share of exits classified regrettable.</p>
+          <p className="text-xs text-stone-500">Per-period share of exits classified regrettable.</p>
         </CardHeader>
         <CardBody>
           {trend.length === 0 ? (
-            <p className="text-sm text-slate-500">No trend data yet. Record exits to populate the trend.</p>
+            <p className="text-sm text-stone-500">No trend data yet. Record exits to populate the trend.</p>
           ) : (
             <div className="flex items-end gap-2 overflow-x-auto pb-2" style={{ minHeight: 180 }}>
               {trend.map((p) => {
@@ -274,13 +274,13 @@ export default function ExitsPage() {
                 const h = Math.max(4, (v / trendMax) * 150)
                 return (
                   <div key={p.period} className="flex min-w-[44px] flex-1 flex-col items-center gap-1">
-                    <span className="text-xs tabular-nums text-amber-300">{v.toFixed(0)}%</span>
+                    <span className="text-xs tabular-nums text-indigo-300">{v.toFixed(0)}%</span>
                     <div
-                      className="w-full rounded-t bg-gradient-to-t from-amber-600/40 to-amber-400"
+                      className="w-full rounded-t bg-gradient-to-t from-indigo-600/40 to-indigo-400"
                       style={{ height: `${h}px` }}
                       title={`${p.regrettable}/${p.total} regrettable`}
                     />
-                    <span className="whitespace-nowrap text-[10px] text-slate-500">{p.period}</span>
+                    <span className="whitespace-nowrap text-[10px] text-stone-500">{p.period}</span>
                   </div>
                 )
               })}
@@ -296,12 +296,12 @@ export default function ExitsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search name, email, dept…"
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-56 rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               <option value="all">All types</option>
               {types.map((t) => (
@@ -313,14 +313,14 @@ export default function ExitsPage() {
             <select
               value={regFilter}
               onChange={(e) => setRegFilter(e.target.value as typeof regFilter)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               <option value="all">All outcomes</option>
               <option value="regrettable">Regrettable only</option>
               <option value="non">Non-regrettable</option>
             </select>
           </div>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-stone-500">
             {filtered.length} of {exits.length} shown
           </span>
         </CardHeader>
@@ -350,10 +350,10 @@ export default function ExitsPage() {
                   <TR key={e.id}>
                     <TD>
                       <div className="font-medium text-white">{e.full_name ?? e.employee_id}</div>
-                      {e.department_name && <div className="text-xs text-slate-500">{e.department_name}</div>}
+                      {e.department_name && <div className="text-xs text-stone-500">{e.department_name}</div>}
                     </TD>
-                    <TD className="text-slate-400">{e.exit_type}</TD>
-                    <TD className="text-slate-400">{fmtDate(e.exit_date)}</TD>
+                    <TD className="text-stone-400">{e.exit_type}</TD>
+                    <TD className="text-stone-400">{fmtDate(e.exit_date)}</TD>
                     <TD>
                       <div className="flex items-center gap-2">
                         <Badge tone={e.is_regrettable ? 'critical' : 'green'}>
@@ -362,12 +362,12 @@ export default function ExitsPage() {
                         {e.manually_overridden && <Badge tone="amber">Overridden</Badge>}
                       </div>
                       {(e.override_reason || e.classification_reason) && (
-                        <div className="mt-1 max-w-xs truncate text-xs text-slate-500">
+                        <div className="mt-1 max-w-xs truncate text-xs text-stone-500">
                           {e.override_reason || e.classification_reason}
                         </div>
                       )}
                     </TD>
-                    <TD className="text-right tabular-nums text-amber-300">
+                    <TD className="text-right tabular-nums text-indigo-300">
                       {e.regrettable_score === undefined || e.regrettable_score === null
                         ? '—'
                         : e.regrettable_score.toFixed(0)}
@@ -424,11 +424,11 @@ export default function ExitsPage() {
       >
         <div className="space-y-4">
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Employee</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Employee</span>
             <select
               value={form.employee_id}
               onChange={(e) => setForm((p) => ({ ...p, employee_id: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               <option value="">Select an employee…</option>
               {employees.map((emp) => (
@@ -440,11 +440,11 @@ export default function ExitsPage() {
             </select>
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Exit type</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Exit type</span>
             <select
               value={form.exit_type}
               onChange={(e) => setForm((p) => ({ ...p, exit_type: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               {EXIT_TYPES.map((t) => (
                 <option key={t} value={t}>
@@ -454,22 +454,22 @@ export default function ExitsPage() {
             </select>
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Exit date</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Exit date</span>
             <input
               type="date"
               value={form.exit_date}
               onChange={(e) => setForm((p) => ({ ...p, exit_date: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             />
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Notes</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Notes</span>
             <textarea
               value={form.notes}
               onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))}
               rows={3}
               placeholder="Context, stated reason, etc."
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
           </label>
         </div>
@@ -491,14 +491,14 @@ export default function ExitsPage() {
         }
       >
         <div className="space-y-4">
-          <div className="text-sm text-slate-400">
+          <div className="text-sm text-stone-400">
             Auto-classification:{' '}
             <Badge tone={overrideTarget?.is_regrettable ? 'critical' : 'green'}>
               {overrideTarget?.is_regrettable ? 'Regrettable' : 'Non-regrettable'}
             </Badge>
           </div>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">
               Reclassify as
             </span>
             <select
@@ -506,14 +506,14 @@ export default function ExitsPage() {
               onChange={(e) =>
                 setOverrideForm((p) => ({ ...p, is_regrettable: e.target.value === 'yes' }))
               }
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
             >
               <option value="yes">Regrettable</option>
               <option value="no">Non-regrettable</option>
             </select>
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">
               Override reason
             </span>
             <textarea
@@ -521,7 +521,7 @@ export default function ExitsPage() {
               onChange={(e) => setOverrideForm((p) => ({ ...p, override_reason: e.target.value }))}
               rows={3}
               placeholder="Why is the manual classification correct?"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
           </label>
         </div>

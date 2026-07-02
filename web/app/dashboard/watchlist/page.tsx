@@ -248,7 +248,7 @@ export default function WatchlistPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold text-white">Retention Watchlist</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Track at-risk talent, assign owners, and schedule stay reviews.
           </p>
         </div>
@@ -286,15 +286,15 @@ export default function WatchlistPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search name, owner, or reason…"
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-amber-500 focus:outline-none sm:max-w-xs"
+            className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-500 focus:border-indigo-500 focus:outline-none sm:max-w-xs"
           />
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => setStatusFilter('all')}
               className={`rounded-full border px-3 py-1 text-xs font-medium ${
                 statusFilter === 'all'
-                  ? 'border-amber-500 bg-amber-500/10 text-amber-300'
-                  : 'border-slate-700 text-slate-400 hover:text-slate-200'
+                  ? 'border-indigo-500 bg-indigo-500/10 text-indigo-300'
+                  : 'border-stone-700 text-stone-400 hover:text-stone-200'
               }`}
             >
               All
@@ -305,8 +305,8 @@ export default function WatchlistPage() {
                 onClick={() => setStatusFilter(s)}
                 className={`rounded-full border px-3 py-1 text-xs font-medium ${
                   statusFilter === s
-                    ? 'border-amber-500 bg-amber-500/10 text-amber-300'
-                    : 'border-slate-700 text-slate-400 hover:text-slate-200'
+                    ? 'border-indigo-500 bg-indigo-500/10 text-indigo-300'
+                    : 'border-stone-700 text-stone-400 hover:text-stone-200'
                 }`}
               >
                 {humanizeStatus(s)}
@@ -353,36 +353,36 @@ export default function WatchlistPage() {
                       <TD>
                         <Link
                           href={`/dashboard/employees/${row.employee_id}`}
-                          className="font-medium text-slate-100 hover:text-amber-300"
+                          className="font-medium text-stone-100 hover:text-indigo-300"
                         >
                           {row.employee?.full_name ?? 'Unknown employee'}
                         </Link>
                         {row.employee?.level && (
-                          <div className="text-xs text-slate-500">{row.employee.level}</div>
+                          <div className="text-xs text-stone-500">{row.employee.level}</div>
                         )}
                       </TD>
                       <TD>
                         {row.risk ? (
                           <div className="flex items-center gap-2">
                             <Badge tone={bandTone(row.risk.band)}>{row.risk.band}</Badge>
-                            <span className="text-xs tabular-nums text-slate-400">
+                            <span className="text-xs tabular-nums text-stone-400">
                               {Math.round(row.risk.score)}
                             </span>
                           </div>
                         ) : (
-                          <span className="text-xs text-slate-500">Not scored</span>
+                          <span className="text-xs text-stone-500">Not scored</span>
                         )}
                       </TD>
                       <TD className="max-w-xs">
-                        <span className="line-clamp-2 text-slate-300">{row.reason || '—'}</span>
+                        <span className="line-clamp-2 text-stone-300">{row.reason || '—'}</span>
                       </TD>
-                      <TD>{row.owner || <span className="text-slate-500">Unassigned</span>}</TD>
+                      <TD>{row.owner || <span className="text-stone-500">Unassigned</span>}</TD>
                       <TD>
                         <select
                           value={row.status}
                           disabled={busyId === row.id}
                           onChange={(e) => quickStatus(row, e.target.value)}
-                          className="rounded-md border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-200 focus:border-amber-500 focus:outline-none disabled:opacity-50"
+                          className="rounded-md border border-stone-700 bg-stone-950 px-2 py-1 text-xs text-stone-200 focus:border-indigo-500 focus:outline-none disabled:opacity-50"
                         >
                           {STATUS_OPTIONS.map((s) => (
                             <option key={s} value={s}>
@@ -435,7 +435,7 @@ export default function WatchlistPage() {
             <select
               value={addForm.employee_id}
               onChange={(e) => setAddForm({ ...addForm, employee_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500 focus:outline-none"
             >
               <option value="">Select an employee…</option>
               {availableEmployees.map((e) => (
@@ -446,7 +446,7 @@ export default function WatchlistPage() {
               ))}
             </select>
             {availableEmployees.length === 0 && (
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-stone-500">
                 All employees are already on the watchlist.
               </p>
             )}
@@ -457,7 +457,7 @@ export default function WatchlistPage() {
               onChange={(e) => setAddForm({ ...addForm, reason: e.target.value })}
               rows={2}
               placeholder="Why are we watching this person?"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-amber-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-500 focus:border-indigo-500 focus:outline-none"
             />
           </Field>
           <div className="grid grid-cols-2 gap-4">
@@ -466,14 +466,14 @@ export default function WatchlistPage() {
                 value={addForm.owner}
                 onChange={(e) => setAddForm({ ...addForm, owner: e.target.value })}
                 placeholder="e.g. Jane (HRBP)"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-amber-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-500 focus:border-indigo-500 focus:outline-none"
               />
             </Field>
             <Field label="Status">
               <select
                 value={addForm.status}
                 onChange={(e) => setAddForm({ ...addForm, status: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500 focus:outline-none"
               >
                 {STATUS_OPTIONS.map((s) => (
                   <option key={s} value={s}>
@@ -488,7 +488,7 @@ export default function WatchlistPage() {
               type="date"
               value={addForm.next_review}
               onChange={(e) => setAddForm({ ...addForm, next_review: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500 focus:outline-none"
             />
           </Field>
           {actionError && <p className="text-sm text-rose-300">{actionError}</p>}
@@ -517,7 +517,7 @@ export default function WatchlistPage() {
               value={editForm.reason}
               onChange={(e) => setEditForm({ ...editForm, reason: e.target.value })}
               rows={2}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-amber-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-500 focus:border-indigo-500 focus:outline-none"
             />
           </Field>
           <div className="grid grid-cols-2 gap-4">
@@ -525,14 +525,14 @@ export default function WatchlistPage() {
               <input
                 value={editForm.owner}
                 onChange={(e) => setEditForm({ ...editForm, owner: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500 focus:outline-none"
               />
             </Field>
             <Field label="Status">
               <select
                 value={editForm.status}
                 onChange={(e) => setEditForm({ ...editForm, status: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500 focus:outline-none"
               >
                 {STATUS_OPTIONS.map((s) => (
                   <option key={s} value={s}>
@@ -547,7 +547,7 @@ export default function WatchlistPage() {
               type="date"
               value={editForm.next_review}
               onChange={(e) => setEditForm({ ...editForm, next_review: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500 focus:outline-none"
             />
           </Field>
           {actionError && <p className="text-sm text-rose-300">{actionError}</p>}
@@ -560,7 +560,7 @@ export default function WatchlistPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">{label}</span>
+      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">{label}</span>
       {children}
     </label>
   )

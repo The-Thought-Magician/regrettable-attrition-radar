@@ -97,8 +97,8 @@ function fmtDate(s?: string | null): string {
 }
 
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-amber-500 focus:outline-none'
-const labelCls = 'mb-1 block text-xs font-medium text-slate-400'
+  'w-full rounded-lg border border-stone-700 bg-stone-800 px-3 py-2 text-sm text-white placeholder:text-stone-500 focus:border-indigo-500 focus:outline-none'
+const labelCls = 'mb-1 block text-xs font-medium text-stone-400'
 
 export default function EmployeeProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
@@ -225,7 +225,7 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
   if (error || !profile?.employee) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/employees" className="text-sm text-amber-400 hover:text-amber-300">← Back to employees</Link>
+        <Link href="/dashboard/employees" className="text-sm text-indigo-400 hover:text-indigo-300">← Back to employees</Link>
         <Card>
           <CardBody>
             <div className="rounded-lg border border-rose-700 bg-rose-900/30 p-4 text-sm text-rose-300">
@@ -259,7 +259,7 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/dashboard/employees" className="text-sm text-amber-400 hover:text-amber-300">← Back to employees</Link>
+        <Link href="/dashboard/employees" className="text-sm text-indigo-400 hover:text-indigo-300">← Back to employees</Link>
       </div>
 
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -271,12 +271,12 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
             </Badge>
             {score?.band && <Badge tone={bandTone(score.band)}>{score.band} risk</Badge>}
           </div>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             {emp.email ?? 'no email'} · {emp.level ?? 'no level'}
           </p>
         </div>
         <div className="flex items-center gap-2">
-          {watchMsg && <span className="text-sm text-amber-300">{watchMsg}</span>}
+          {watchMsg && <span className="text-sm text-indigo-300">{watchMsg}</span>}
           <Button variant="secondary" onClick={() => { setWatchError(''); setShowWatch(true) }}>Add to Watchlist</Button>
           <Button onClick={openEdit}>Edit</Button>
         </div>
@@ -312,7 +312,7 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
           </CardHeader>
           <CardBody>
             {breakdown.length === 0 ? (
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-stone-500">
                 No score breakdown available. Compute risk scores to populate factor contributions.
               </p>
             ) : (
@@ -322,14 +322,14 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
                   return (
                     <div key={f.key}>
                       <div className="mb-1 flex items-center justify-between text-sm">
-                        <span className="text-slate-300">{f.label}</span>
-                        <span className="font-semibold tabular-nums text-amber-300">
+                        <span className="text-stone-300">{f.label}</span>
+                        <span className="font-semibold tabular-nums text-indigo-300">
                           +{f.contribution.toFixed(1)}
-                          <span className="ml-2 text-xs text-slate-500">raw {f.raw}</span>
+                          <span className="ml-2 text-xs text-stone-500">raw {f.raw}</span>
                         </span>
                       </div>
-                      <div className="h-2 overflow-hidden rounded-full bg-slate-800">
-                        <div className="h-full rounded-full bg-amber-500" style={{ width: `${pct}%` }} />
+                      <div className="h-2 overflow-hidden rounded-full bg-stone-800">
+                        <div className="h-full rounded-full bg-indigo-500" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
                   )
@@ -346,31 +346,31 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
           </CardHeader>
           <CardBody>
             {!cost ? (
-              <p className="text-sm text-slate-500">Not yet computed.</p>
+              <p className="text-sm text-stone-500">Not yet computed.</p>
             ) : (
               <dl className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <dt className="text-slate-400">Recruiting</dt>
-                  <dd className="tabular-nums text-slate-200">{fmtMoney(cost.recruiting_cost)}</dd>
+                  <dt className="text-stone-400">Recruiting</dt>
+                  <dd className="tabular-nums text-stone-200">{fmtMoney(cost.recruiting_cost)}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-slate-400">Ramp</dt>
-                  <dd className="tabular-nums text-slate-200">{fmtMoney(cost.ramp_cost)}</dd>
+                  <dt className="text-stone-400">Ramp</dt>
+                  <dd className="tabular-nums text-stone-200">{fmtMoney(cost.ramp_cost)}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-slate-400">Productivity loss</dt>
-                  <dd className="tabular-nums text-slate-200">{fmtMoney(cost.productivity_loss)}</dd>
+                  <dt className="text-stone-400">Productivity loss</dt>
+                  <dd className="tabular-nums text-stone-200">{fmtMoney(cost.productivity_loss)}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-slate-400">Onboarding</dt>
-                  <dd className="tabular-nums text-slate-200">{fmtMoney(cost.onboarding_cost)}</dd>
+                  <dt className="text-stone-400">Onboarding</dt>
+                  <dd className="tabular-nums text-stone-200">{fmtMoney(cost.onboarding_cost)}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-slate-400">Knowledge transfer</dt>
-                  <dd className="tabular-nums text-slate-200">{fmtMoney(cost.knowledge_transfer_cost)}</dd>
+                  <dt className="text-stone-400">Knowledge transfer</dt>
+                  <dd className="tabular-nums text-stone-200">{fmtMoney(cost.knowledge_transfer_cost)}</dd>
                 </div>
-                <div className="mt-2 flex justify-between border-t border-slate-800 pt-2">
-                  <dt className="font-semibold text-slate-200">Total</dt>
+                <div className="mt-2 flex justify-between border-t border-stone-800 pt-2">
+                  <dt className="font-semibold text-stone-200">Total</dt>
                   <dd className="font-bold tabular-nums text-rose-400">{fmtMoney(cost.total_cost)}</dd>
                 </div>
               </dl>
@@ -386,10 +386,10 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
         </CardHeader>
         <CardBody>
           {trend.length === 0 ? (
-            <p className="text-sm text-slate-500">No score history yet.</p>
+            <p className="text-sm text-stone-500">No score history yet.</p>
           ) : trend.length === 1 ? (
-            <p className="text-sm text-slate-300">
-              Single snapshot: <span className="font-semibold text-amber-300">{Math.round(trend[0].score)}</span>{' '}
+            <p className="text-sm text-stone-300">
+              Single snapshot: <span className="font-semibold text-indigo-300">{Math.round(trend[0].score)}</span>{' '}
               ({trend[0].band}) on {fmtDate(trend[0].computed_at)}
             </p>
           ) : (
@@ -424,7 +424,7 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
                   )
                 })()}
               </svg>
-              <div className="mt-2 flex justify-between text-xs text-slate-500">
+              <div className="mt-2 flex justify-between text-xs text-stone-500">
                 <span>{fmtDate(trend[0].computed_at)}</span>
                 <span>{fmtDate(trend[trend.length - 1].computed_at)}</span>
               </div>
@@ -437,11 +437,11 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
       <Card>
         <CardHeader className="flex items-center justify-between">
           <h2 className="text-sm font-semibold text-white">Intervention Candidates</h2>
-          <Link href="/dashboard/optimizer" className="text-xs text-amber-400 hover:text-amber-300">ROI optimizer →</Link>
+          <Link href="/dashboard/optimizer" className="text-xs text-indigo-400 hover:text-indigo-300">ROI optimizer →</Link>
         </CardHeader>
         <CardBody className="p-0">
           {candidates.length === 0 ? (
-            <p className="px-5 py-6 text-sm text-slate-500">No candidate interventions generated for this employee.</p>
+            <p className="px-5 py-6 text-sm text-stone-500">No candidate interventions generated for this employee.</p>
           ) : (
             <Table>
               <THead>
@@ -455,10 +455,10 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
               <TBody>
                 {candidates.map((c, i) => (
                   <TR key={c.id ?? c.intervention_id ?? i}>
-                    <TD className="font-medium text-slate-200">{c.intervention_name ?? c.name ?? 'Intervention'}</TD>
+                    <TD className="font-medium text-stone-200">{c.intervention_name ?? c.name ?? 'Intervention'}</TD>
                     <TD className="text-right tabular-nums">{fmtMoney(c.cost)}</TD>
                     <TD className="text-right tabular-nums text-emerald-300">-{(c.risk_reduction ?? 0).toFixed(1)}</TD>
-                    <TD className="text-right font-semibold tabular-nums text-amber-300">{(c.roi ?? 0).toFixed(2)}</TD>
+                    <TD className="text-right font-semibold tabular-nums text-indigo-300">{(c.roi ?? 0).toFixed(2)}</TD>
                   </TR>
                 ))}
               </TBody>
@@ -475,24 +475,24 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
           </CardHeader>
           <CardBody>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <dt className="text-slate-400">Manager ID</dt>
-              <dd className="text-slate-200">{emp.manager_id ?? '—'}</dd>
-              <dt className="text-slate-400">Hire date</dt>
-              <dd className="text-slate-200">{fmtDate(emp.hire_date)}</dd>
-              <dt className="text-slate-400">Role start</dt>
-              <dd className="text-slate-200">{fmtDate(emp.role_start_date)}</dd>
-              <dt className="text-slate-400">Last raise</dt>
-              <dd className="text-slate-200">{fmtDate(emp.last_raise_date)}</dd>
-              <dt className="text-slate-400">Last promotion</dt>
-              <dd className="text-slate-200">{fmtDate(emp.last_promotion_date)}</dd>
-              <dt className="text-slate-400">Span of control</dt>
-              <dd className="text-slate-200">{emp.span_of_control ?? '—'}</dd>
-              <dt className="text-slate-400">Succession depth</dt>
-              <dd className="text-slate-200">{emp.succession_depth ?? '—'}</dd>
-              <dt className="text-slate-400">Salary</dt>
-              <dd className="text-slate-200">{fmtMoney(emp.salary)}</dd>
-              <dt className="text-slate-400">Hire cohort</dt>
-              <dd className="text-slate-200">{emp.hire_cohort ?? '—'}</dd>
+              <dt className="text-stone-400">Manager ID</dt>
+              <dd className="text-stone-200">{emp.manager_id ?? '—'}</dd>
+              <dt className="text-stone-400">Hire date</dt>
+              <dd className="text-stone-200">{fmtDate(emp.hire_date)}</dd>
+              <dt className="text-stone-400">Role start</dt>
+              <dd className="text-stone-200">{fmtDate(emp.role_start_date)}</dd>
+              <dt className="text-stone-400">Last raise</dt>
+              <dd className="text-stone-200">{fmtDate(emp.last_raise_date)}</dd>
+              <dt className="text-stone-400">Last promotion</dt>
+              <dd className="text-stone-200">{fmtDate(emp.last_promotion_date)}</dd>
+              <dt className="text-stone-400">Span of control</dt>
+              <dd className="text-stone-200">{emp.span_of_control ?? '—'}</dd>
+              <dt className="text-stone-400">Succession depth</dt>
+              <dd className="text-stone-200">{emp.succession_depth ?? '—'}</dd>
+              <dt className="text-stone-400">Salary</dt>
+              <dd className="text-stone-200">{fmtMoney(emp.salary)}</dd>
+              <dt className="text-stone-400">Hire cohort</dt>
+              <dd className="text-stone-200">{emp.hire_cohort ?? '—'}</dd>
             </dl>
           </CardBody>
         </Card>
@@ -507,15 +507,15 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
             ) : (
               <dl className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <dt className="text-slate-400">Type</dt>
-                  <dd className="text-slate-200">{exitRec.exit_type ?? '—'}</dd>
+                  <dt className="text-stone-400">Type</dt>
+                  <dd className="text-stone-200">{exitRec.exit_type ?? '—'}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-slate-400">Date</dt>
-                  <dd className="text-slate-200">{fmtDate(exitRec.exit_date)}</dd>
+                  <dt className="text-stone-400">Date</dt>
+                  <dd className="text-stone-200">{fmtDate(exitRec.exit_date)}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-slate-400">Regrettable</dt>
+                  <dt className="text-stone-400">Regrettable</dt>
                   <dd>
                     <Badge tone={exitRec.is_regrettable ? 'rose' : 'green'}>
                       {exitRec.is_regrettable ? 'Regrettable' : 'Non-regrettable'}
@@ -524,12 +524,12 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
                 </div>
                 {exitRec.regrettable_score != null && (
                   <div className="flex justify-between">
-                    <dt className="text-slate-400">Regrettable score</dt>
-                    <dd className="tabular-nums text-slate-200">{Math.round(exitRec.regrettable_score)}</dd>
+                    <dt className="text-stone-400">Regrettable score</dt>
+                    <dd className="tabular-nums text-stone-200">{Math.round(exitRec.regrettable_score)}</dd>
                   </div>
                 )}
                 {exitRec.classification_reason && (
-                  <p className="mt-2 rounded-lg bg-slate-800/60 p-2 text-xs text-slate-400">
+                  <p className="mt-2 rounded-lg bg-stone-800/60 p-2 text-xs text-stone-400">
                     {exitRec.classification_reason}
                   </p>
                 )}
@@ -607,12 +607,12 @@ export default function EmployeeProfilePage({ params }: { params: Promise<{ id: 
               <input type="number" value={edit.succession_depth} onChange={(e) => setEdit({ ...edit, succession_depth: e.target.value })} className={inputCls} />
             </div>
             <div className="flex items-end">
-              <label className="flex items-center gap-2 text-sm text-slate-300">
+              <label className="flex items-center gap-2 text-sm text-stone-300">
                 <input
                   type="checkbox"
                   checked={edit.unique_skill}
                   onChange={(e) => setEdit({ ...edit, unique_skill: e.target.checked })}
-                  className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-amber-500 focus:ring-amber-500"
+                  className="h-4 w-4 rounded border-stone-600 bg-stone-800 text-indigo-500 focus:ring-indigo-500"
                 />
                 Unique skill holder
               </label>

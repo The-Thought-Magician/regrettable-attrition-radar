@@ -129,7 +129,7 @@ export default function BenchmarksPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-white">Assumptions & Benchmarks</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             The economic assumptions behind replacement cost, ROI, and retention math. Tune them to your org.
           </p>
         </div>
@@ -164,9 +164,9 @@ export default function BenchmarksPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search benchmarks..."
-            className="flex-1 min-w-[200px] rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+            className="flex-1 min-w-[200px] rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
           />
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-stone-500">
             {filtered.length} of {items.length}
           </span>
         </CardHeader>
@@ -205,9 +205,9 @@ export default function BenchmarksPage() {
                           <span className="font-medium text-white">{b.label}</span>
                           {overridden && <Badge tone="amber">overridden</Badge>}
                         </div>
-                        <div className="mt-0.5 font-mono text-xs text-slate-600">{b.key}</div>
+                        <div className="mt-0.5 font-mono text-xs text-stone-600">{b.key}</div>
                       </TD>
-                      <TD className="tabular-nums text-slate-400">
+                      <TD className="tabular-nums text-stone-400">
                         {fmtVal(b.default_value, b.unit)}
                       </TD>
                       <TD>
@@ -216,12 +216,12 @@ export default function BenchmarksPage() {
                           step="any"
                           value={drafts[b.id] ?? ''}
                           onChange={(e) => setDrafts((d) => ({ ...d, [b.id]: e.target.value }))}
-                          className={`w-32 rounded-md border bg-slate-950 px-2 py-1.5 text-sm text-slate-200 focus:outline-none ${
-                            dirty ? 'border-amber-500/60' : 'border-slate-700 focus:border-amber-500/60'
+                          className={`w-32 rounded-md border bg-stone-950 px-2 py-1.5 text-sm text-stone-200 focus:outline-none ${
+                            dirty ? 'border-indigo-500/60' : 'border-stone-700 focus:border-indigo-500/60'
                           }`}
                         />
                       </TD>
-                      <TD className="text-slate-400">{b.unit || '—'}</TD>
+                      <TD className="text-stone-400">{b.unit || '—'}</TD>
                       <TD className="text-right">
                         <div className="flex justify-end gap-1">
                           {b.default_value != null && b.value !== b.default_value && (

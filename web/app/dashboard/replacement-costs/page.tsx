@@ -191,7 +191,7 @@ export default function ReplacementCostsPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Replacement Costs</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Total exposure if at-risk employees leave, plus the cost models that drive the math.
           </p>
         </div>
@@ -225,19 +225,19 @@ export default function ReplacementCostsPage() {
           </CardHeader>
           <CardBody>
             {byDept.length === 0 ? (
-              <p className="text-sm text-slate-500">No exposure yet. Recompute costs to populate.</p>
+              <p className="text-sm text-stone-500">No exposure yet. Recompute costs to populate.</p>
             ) : (
               <div className="space-y-2.5">
                 {byDept.map((d) => (
                   <div key={d.department} className="flex items-center gap-3">
-                    <div className="w-32 shrink-0 truncate text-sm text-slate-300">{d.department || '—'}</div>
-                    <div className="h-3 flex-1 overflow-hidden rounded-full bg-slate-800">
+                    <div className="w-32 shrink-0 truncate text-sm text-stone-300">{d.department || '—'}</div>
+                    <div className="h-3 flex-1 overflow-hidden rounded-full bg-stone-800">
                       <div
-                        className="h-full rounded-full bg-amber-500/70"
+                        className="h-full rounded-full bg-indigo-500/70"
                         style={{ width: `${Math.max(2, (d.total / deptMax) * 100)}%` }}
                       />
                     </div>
-                    <div className="w-20 shrink-0 text-right tabular-nums text-sm text-slate-300">
+                    <div className="w-20 shrink-0 text-right tabular-nums text-sm text-stone-300">
                       {fmtMoney(d.total)}
                     </div>
                   </div>
@@ -253,7 +253,7 @@ export default function ReplacementCostsPage() {
           </CardHeader>
           <CardBody>
             {byBand.length === 0 ? (
-              <p className="text-sm text-slate-500">No exposure yet. Recompute costs to populate.</p>
+              <p className="text-sm text-stone-500">No exposure yet. Recompute costs to populate.</p>
             ) : (
               <div className="space-y-2.5">
                 {byBand.map((b) => (
@@ -261,13 +261,13 @@ export default function ReplacementCostsPage() {
                     <div className="w-32 shrink-0">
                       <Badge tone={bandTone(b.band)}>{b.band || '—'}</Badge>
                     </div>
-                    <div className="h-3 flex-1 overflow-hidden rounded-full bg-slate-800">
+                    <div className="h-3 flex-1 overflow-hidden rounded-full bg-stone-800">
                       <div
                         className="h-full rounded-full bg-rose-500/70"
                         style={{ width: `${Math.max(2, (b.total / bandMax) * 100)}%` }}
                       />
                     </div>
-                    <div className="w-20 shrink-0 text-right tabular-nums text-sm text-slate-300">
+                    <div className="w-20 shrink-0 text-right tabular-nums text-sm text-stone-300">
                       {fmtMoney(b.total)}
                     </div>
                   </div>
@@ -285,7 +285,7 @@ export default function ReplacementCostsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search name, dept, role family…"
-            className="w-64 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+            className="w-64 rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
           />
         </CardHeader>
         <CardBody className="p-0">
@@ -316,8 +316,8 @@ export default function ReplacementCostsPage() {
                 {filteredRows.map((r) => (
                   <TR key={r.employee_id}>
                     <TD className="font-medium text-white">{r.full_name ?? r.employee_id}</TD>
-                    <TD className="text-slate-400">{r.department_name ?? '—'}</TD>
-                    <TD className="text-slate-400">{r.role_family ?? '—'}</TD>
+                    <TD className="text-stone-400">{r.department_name ?? '—'}</TD>
+                    <TD className="text-stone-400">{r.role_family ?? '—'}</TD>
                     <TD>{r.band ? <Badge tone={bandTone(r.band)}>{r.band}</Badge> : '—'}</TD>
                     <TD className="text-right tabular-nums font-semibold text-rose-300">{fmtMoney(r.total_cost)}</TD>
                   </TR>
@@ -332,7 +332,7 @@ export default function ReplacementCostsPage() {
         <CardHeader className="flex items-center justify-between">
           <div>
             <h2 className="text-base font-semibold text-white">Cost models</h2>
-            <p className="text-xs text-slate-500">One model per role family drives the replacement-cost formula.</p>
+            <p className="text-xs text-stone-500">One model per role family drives the replacement-cost formula.</p>
           </div>
           <Button onClick={openCreate}>New model</Button>
         </CardHeader>
@@ -360,13 +360,13 @@ export default function ReplacementCostsPage() {
                 {models.map((m) => (
                   <TR key={m.id}>
                     <TD className="font-medium text-white">{m.role_family}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">{m.salary_multiplier}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">
+                    <TD className="text-right tabular-nums text-stone-300">{m.salary_multiplier}</TD>
+                    <TD className="text-right tabular-nums text-stone-300">
                       {(m.agency_pct <= 1 ? m.agency_pct * 100 : m.agency_pct).toFixed(0)}%
                     </TD>
-                    <TD className="text-right tabular-nums text-slate-300">{m.weeks_to_productivity}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">{fmtMoney(m.onboarding_cost)}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">{fmtMoney(m.knowledge_transfer_cost)}</TD>
+                    <TD className="text-right tabular-nums text-stone-300">{m.weeks_to_productivity}</TD>
+                    <TD className="text-right tabular-nums text-stone-300">{fmtMoney(m.onboarding_cost)}</TD>
+                    <TD className="text-right tabular-nums text-stone-300">{fmtMoney(m.knowledge_transfer_cost)}</TD>
                     <TD className="text-right">
                       <Button variant="secondary" className="px-3 py-1 text-xs" onClick={() => openEdit(m)}>
                         Edit
@@ -397,28 +397,28 @@ export default function ReplacementCostsPage() {
       >
         <div className="space-y-4">
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Role family</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">Role family</span>
             <input
               value={form.role_family}
               onChange={(e) => setForm((p) => ({ ...p, role_family: e.target.value }))}
               placeholder="e.g. Engineering"
               disabled={!!editing}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none disabled:opacity-60"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none disabled:opacity-60"
             />
           </label>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {MODEL_FIELDS.map((f) => (
               <label key={String(f.key)} className="block">
-                <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+                <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-400">
                   {f.label}
-                  {f.hint && <span className="ml-1 text-slate-600 normal-case">({f.hint})</span>}
+                  {f.hint && <span className="ml-1 text-stone-600 normal-case">({f.hint})</span>}
                 </span>
                 <input
                   type="number"
                   step={f.step ?? 'any'}
                   value={form[f.key as keyof typeof form]}
                   onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+                  className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
                 />
               </label>
             ))}

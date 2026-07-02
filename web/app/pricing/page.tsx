@@ -28,40 +28,40 @@ export default function Pricing() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <nav className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-lg font-bold text-amber-400">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/15">◎</span>
+    <main className="min-h-screen bg-stone-950 text-white">
+      <nav className="border-b border-stone-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2 text-lg font-bold text-indigo-400">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/15">◎</span>
           RegrettableAttritionRadar
         </Link>
         <div className="flex items-center gap-4 text-sm">
-          <Link href="/auth/sign-in" className="text-slate-300 hover:text-white">Sign In</Link>
-          <Link href="/auth/sign-up" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-4 py-2 rounded-lg">Get Started</Link>
+          <Link href="/auth/sign-in" className="text-stone-300 hover:text-white">Sign In</Link>
+          <Link href="/auth/sign-up" className="bg-indigo-500 hover:bg-indigo-400 text-stone-950 font-semibold px-4 py-2 rounded-lg">Get Started</Link>
         </div>
       </nav>
 
       <section className="max-w-3xl mx-auto px-6 py-20 text-center">
         <h1 className="text-4xl font-black tracking-tight">Simple pricing. Everything is free.</h1>
-        <p className="mt-4 text-lg text-slate-400">
+        <p className="mt-4 text-lg text-stone-400">
           Every capability in RegrettableAttritionRadar is available at no cost while we are in early access.
         </p>
 
-        <div className="mt-12 rounded-2xl border border-amber-500/30 bg-slate-900 p-8 text-left shadow-xl">
+        <div className="mt-12 rounded-2xl border border-indigo-500/30 bg-stone-900 p-8 text-left shadow-xl">
           <div className="flex items-baseline justify-between">
             <div>
               <h2 className="text-xl font-bold text-white">Free</h2>
-              <p className="text-sm text-slate-400">The full platform, no limits.</p>
+              <p className="text-sm text-stone-400">The full platform, no limits.</p>
             </div>
             <div className="text-right">
-              <span className="text-4xl font-black text-amber-400">$0</span>
-              <span className="text-sm text-slate-500">/month</span>
+              <span className="text-4xl font-black text-indigo-400">$0</span>
+              <span className="text-sm text-stone-500">/month</span>
             </div>
           </div>
 
           <ul className="mt-6 space-y-2.5">
             {included.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
-                <span className="mt-0.5 text-amber-400">✓</span>
+              <li key={item} className="flex items-start gap-2 text-sm text-stone-300">
+                <span className="mt-0.5 text-indigo-400">✓</span>
                 {item}
               </li>
             ))}
@@ -69,12 +69,12 @@ export default function Pricing() {
 
           <Link
             href="/auth/sign-up"
-            className="mt-8 block w-full rounded-lg bg-amber-500 py-3 text-center font-semibold text-slate-950 hover:bg-amber-400"
+            className="mt-8 block w-full rounded-lg bg-indigo-500 py-3 text-center font-semibold text-stone-950 hover:bg-indigo-400"
           >
             Start free
           </Link>
 
-          <p className="mt-4 text-center text-xs text-slate-500">
+          <p className="mt-4 text-center text-xs text-stone-500">
             {stripeEnabled === null
               ? 'Loading billing status...'
               : stripeEnabled
@@ -84,7 +84,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <footer className="border-t border-slate-800 py-8 text-center text-slate-600 text-sm">
+      <footer className="border-t border-stone-800 py-8 text-center text-stone-600 text-sm">
         <p>RegrettableAttritionRadar</p>
       </footer>
     </main>

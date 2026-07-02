@@ -194,7 +194,7 @@ export default function InterventionsPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-white">Intervention Catalog</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Retention levers the optimizer can deploy against flight risk. Define cost and expected risk reduction.
           </p>
         </div>
@@ -223,12 +223,12 @@ export default function InterventionsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search name, description, driver..."
-            className="flex-1 min-w-[200px] rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+            className="flex-1 min-w-[200px] rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
           />
           <select
             value={kindFilter}
             onChange={(e) => setKindFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
           >
             <option value="all">All types</option>
             {KINDS.map((k) => (
@@ -237,7 +237,7 @@ export default function InterventionsPage() {
               </option>
             ))}
           </select>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-stone-500">
             {filtered.length} of {items.length}
           </span>
         </CardHeader>
@@ -274,17 +274,17 @@ export default function InterventionsPage() {
                     <TD>
                       <div className="font-medium text-white">{it.name}</div>
                       {it.description && (
-                        <div className="mt-0.5 max-w-md truncate text-xs text-slate-500">{it.description}</div>
+                        <div className="mt-0.5 max-w-md truncate text-xs text-stone-500">{it.description}</div>
                       )}
                     </TD>
                     <TD>
                       <Badge tone={KIND_TONES[it.kind] ?? 'neutral'}>{it.kind.replace(/_/g, ' ')}</Badge>
                     </TD>
-                    <TD className="text-slate-400">{it.addresses_driver || '—'}</TD>
-                    <TD className="text-right tabular-nums text-amber-300">{fmtMoney(it.cost)}</TD>
+                    <TD className="text-stone-400">{it.addresses_driver || '—'}</TD>
+                    <TD className="text-right tabular-nums text-indigo-300">{fmtMoney(it.cost)}</TD>
                     <TD className="text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-1.5 w-16 overflow-hidden rounded-full bg-stone-800">
                           <div
                             className="h-full rounded-full bg-emerald-400"
                             style={{
@@ -340,21 +340,21 @@ export default function InterventionsPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="e.g. Off-cycle equity refresh"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Type</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Type</label>
               <select
                 value={form.kind}
                 onChange={(e) => setForm({ ...form, kind: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500/60 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-indigo-500/60 focus:outline-none"
               >
                 {KINDS.map((k) => (
                   <option key={k} value={k}>
@@ -364,18 +364,18 @@ export default function InterventionsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Addresses Driver</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Addresses Driver</label>
               <input
                 value={form.addresses_driver}
                 onChange={(e) => setForm({ ...form, addresses_driver: e.target.value })}
                 placeholder="e.g. compensation"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
               />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">Cost (USD)</label>
+              <label className="mb-1 block text-xs font-medium text-stone-400">Cost (USD)</label>
               <input
                 type="number"
                 min="0"
@@ -383,11 +383,11 @@ export default function InterventionsPage() {
                 value={form.cost}
                 onChange={(e) => setForm({ ...form, cost: e.target.value })}
                 placeholder="0"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">
+              <label className="mb-1 block text-xs font-medium text-stone-400">
                 Risk Reduction (0–1 or %)
               </label>
               <input
@@ -397,18 +397,18 @@ export default function InterventionsPage() {
                 value={form.risk_reduction}
                 onChange={(e) => setForm({ ...form, risk_reduction: e.target.value })}
                 placeholder="0.15"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Description</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={3}
               placeholder="What the intervention does and when to apply it..."
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
         </div>

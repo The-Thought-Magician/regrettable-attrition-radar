@@ -69,16 +69,16 @@ function RoiBars({ rows }: { rows: Candidate[] }) {
     <div className="space-y-2">
       {top.map((r) => (
         <div key={r.id} className="flex items-center gap-3">
-          <div className="w-40 shrink-0 truncate text-xs text-slate-300" title={`${nameOf(r)} · ${interventionOf(r)}`}>
+          <div className="w-40 shrink-0 truncate text-xs text-stone-300" title={`${nameOf(r)} · ${interventionOf(r)}`}>
             {nameOf(r)}
           </div>
-          <div className="relative h-5 flex-1 overflow-hidden rounded bg-slate-950">
+          <div className="relative h-5 flex-1 overflow-hidden rounded bg-stone-950">
             <div
-              className="h-full rounded bg-amber-500/70"
+              className="h-full rounded bg-indigo-500/70"
               style={{ width: `${Math.max(2, ((r.roi || 0) / max) * 100)}%` }}
             />
           </div>
-          <div className="w-16 shrink-0 text-right text-xs tabular-nums text-amber-300">{num(r.roi, 2)}×</div>
+          <div className="w-16 shrink-0 text-right text-xs tabular-nums text-indigo-300">{num(r.roi, 2)}×</div>
         </div>
       ))}
     </div>
@@ -198,7 +198,7 @@ export default function OptimizerPage() {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-white">ROI Optimizer</h1>
-          <p className="mt-1 text-sm text-slate-400">Generate retention interventions, optimize within a budget, and bank the result as a scenario.</p>
+          <p className="mt-1 text-sm text-stone-400">Generate retention interventions, optimize within a budget, and bank the result as a scenario.</p>
         </div>
         <Button variant="secondary" onClick={handleGenerate} disabled={generating}>
           {generating ? 'Generating...' : 'Regenerate candidates'}
@@ -235,14 +235,14 @@ export default function OptimizerPage() {
             <CardBody className="space-y-4">
               <form onSubmit={handleOptimize} className="flex flex-wrap items-end gap-3">
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-400">Retention budget (USD)</label>
+                  <label className="mb-1 block text-xs font-medium text-stone-400">Retention budget (USD)</label>
                   <input
                     type="number"
                     min={0}
                     step={1000}
                     value={budget}
                     onChange={(e) => setBudget(Number(e.target.value))}
-                    className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm tabular-nums text-slate-200 focus:border-amber-500/60 focus:outline-none"
+                    className="w-48 rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm tabular-nums text-stone-200 focus:border-indigo-500/60 focus:outline-none"
                   />
                 </div>
                 <Button type="submit" disabled={optimizing}>{optimizing ? 'Optimizing...' : 'Optimize'}</Button>
@@ -289,7 +289,7 @@ export default function OptimizerPage() {
                             <TD>{interventionOf(s)}</TD>
                             <TD className="text-right tabular-nums">{money(s.cost)}</TD>
                             <TD className="text-right tabular-nums text-emerald-300">{num(s.risk_reduction, 1)}</TD>
-                            <TD className="text-right tabular-nums text-amber-300">{s.roi !== undefined ? `${num(s.roi, 2)}×` : '—'}</TD>
+                            <TD className="text-right tabular-nums text-indigo-300">{s.roi !== undefined ? `${num(s.roi, 2)}×` : '—'}</TD>
                           </TR>
                         ))}
                       </TBody>
@@ -299,7 +299,7 @@ export default function OptimizerPage() {
                   )}
                 </div>
               ) : (
-                <p className="text-sm text-slate-500">Set a budget and run the optimizer to see the selected intervention set.</p>
+                <p className="text-sm text-stone-500">Set a budget and run the optimizer to see the selected intervention set.</p>
               )}
             </CardBody>
           </Card>
@@ -327,7 +327,7 @@ export default function OptimizerPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search employee / intervention..."
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+                  className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
                 />
               </CardHeader>
               <CardBody className="p-0">
@@ -350,14 +350,14 @@ export default function OptimizerPage() {
                       <TBody>
                         {filteredRanking.map((r, i) => (
                           <TR key={r.id}>
-                            <TD className="text-slate-500">{i + 1}</TD>
+                            <TD className="text-stone-500">{i + 1}</TD>
                             <TD className="font-medium text-white">
                               {nameOf(r)}
                               {r.band && <span className="ml-2"><Badge tone={bandTone(r.band)}>{r.band}</Badge></span>}
                             </TD>
                             <TD>{interventionOf(r)}</TD>
                             <TD className="text-right tabular-nums">{money(r.cost)}</TD>
-                            <TD className="text-right tabular-nums text-amber-300">{num(r.roi, 2)}×</TD>
+                            <TD className="text-right tabular-nums text-indigo-300">{num(r.roi, 2)}×</TD>
                           </TR>
                         ))}
                       </TBody>
@@ -388,26 +388,26 @@ export default function OptimizerPage() {
             <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{saveErr}</div>
           )}
           {result && (
-            <div className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-400">
+            <div className="rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-xs text-stone-400">
               Budget {money(result.budget)} · Spend {money(result.totalSpend)} · {result.selected?.length ?? 0} interventions · Avoided {money(result.avoidedCost)}
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Scenario name</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Scenario name</label>
             <input
               value={scenarioName}
               onChange={(e) => setScenarioName(e.target.value)}
               placeholder="Q3 retention plan"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-400">Notes (optional)</label>
+            <label className="mb-1 block text-xs font-medium text-stone-400">Notes (optional)</label>
             <textarea
               value={scenarioNotes}
               onChange={(e) => setScenarioNotes(e.target.value)}
               rows={3}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-amber-500/60 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/60 focus:outline-none"
             />
           </div>
         </form>

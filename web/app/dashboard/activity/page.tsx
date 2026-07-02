@@ -128,7 +128,7 @@ export default function ActivityPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-bold text-white">Activity Log</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-stone-500">
             Full audit trail of every create, update, delete, and computation across the platform.
           </p>
         </div>
@@ -157,7 +157,7 @@ export default function ActivityPage() {
             <select
               value={entityType}
               onChange={(e) => setEntityType(e.target.value)}
-              className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs text-slate-200 focus:border-amber-500/50 focus:outline-none"
+              className="rounded-lg border border-stone-800 bg-stone-950 px-3 py-1.5 text-xs text-stone-200 focus:border-indigo-500/50 focus:outline-none"
             >
               <option value="all">All entities</option>
               {entityTypes.map((t) => (
@@ -169,7 +169,7 @@ export default function ActivityPage() {
             <select
               value={action}
               onChange={(e) => setAction(e.target.value)}
-              className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs text-slate-200 focus:border-amber-500/50 focus:outline-none"
+              className="rounded-lg border border-stone-800 bg-stone-950 px-3 py-1.5 text-xs text-stone-200 focus:border-indigo-500/50 focus:outline-none"
             >
               <option value="all">All actions</option>
               {actions.map((a) => (
@@ -182,7 +182,7 @@ export default function ActivityPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search…"
-              className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-1.5 text-xs text-slate-200 placeholder:text-slate-600 focus:border-amber-500/50 focus:outline-none"
+              className="rounded-lg border border-stone-800 bg-stone-950 px-3 py-1.5 text-xs text-stone-200 placeholder:text-stone-600 focus:border-indigo-500/50 focus:outline-none"
             />
           </div>
         </CardHeader>
@@ -199,9 +199,9 @@ export default function ActivityPage() {
               {grouped.map(([day, entries]) => (
                 <div key={day}>
                   <div className="mb-2 flex items-center gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">{day}</span>
-                    <span className="text-xs text-slate-600">({entries.length})</span>
-                    <div className="h-px flex-1 bg-slate-800" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">{day}</span>
+                    <span className="text-xs text-stone-600">({entries.length})</span>
+                    <div className="h-px flex-1 bg-stone-800" />
                   </div>
                   <Table>
                     <THead>
@@ -226,32 +226,32 @@ export default function ActivityPage() {
                         const hasDetail = i.detail != null && detailStr !== 'null' && detailStr !== ''
                         return (
                           <TR key={i.id}>
-                            <TD className="whitespace-nowrap text-xs text-slate-500">
+                            <TD className="whitespace-nowrap text-xs text-stone-500">
                               {new Date(i.created_at).toLocaleTimeString?.() || fmtDate(i.created_at)}
                             </TD>
                             <TD>
                               <Badge tone={actionTone(i.action)}>{i.action}</Badge>
                             </TD>
                             <TD className="font-medium">{i.entity_type}</TD>
-                            <TD className="font-mono text-xs text-slate-500">{i.entity_id ?? '—'}</TD>
+                            <TD className="font-mono text-xs text-stone-500">{i.entity_id ?? '—'}</TD>
                             <TD className="max-w-md">
                               {hasDetail ? (
                                 <div>
                                   <button
                                     type="button"
                                     onClick={() => setExpanded(isOpen ? null : i.id)}
-                                    className="text-left text-xs text-amber-400 hover:text-amber-300"
+                                    className="text-left text-xs text-indigo-400 hover:text-indigo-300"
                                   >
                                     {isOpen ? 'Hide detail' : summarizeDetail(i.detail)}
                                   </button>
                                   {isOpen && (
-                                    <pre className="mt-2 max-h-48 overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-300">
+                                    <pre className="mt-2 max-h-48 overflow-auto rounded-lg border border-stone-800 bg-stone-950 p-3 text-xs text-stone-300">
                                       {detailStr}
                                     </pre>
                                   )}
                                 </div>
                               ) : (
-                                <span className="text-slate-600">—</span>
+                                <span className="text-stone-600">—</span>
                               )}
                             </TD>
                           </TR>
